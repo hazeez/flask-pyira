@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, redirect, session
 from forms import LoginForm
 
 app = Flask(__name__)
@@ -10,7 +10,8 @@ app.config.from_object('config')
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Logged In User: %s' % form.username.data)
+        session['username'] = form.username.data
+        session['pwd'] = form.password.data
         return redirect('/index')
     return render_template('home.html',
                            title='Sign In',
@@ -19,7 +20,19 @@ def login():
 
 @app.route('/index')
 def index():
+    try:
+        if len(session['username']) == 0:
+            return redirect('/login')
+    except:
+        return redirect('/login')
     return render_template('index.html')
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect('/login')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
