@@ -1,9 +1,8 @@
-.login{
-    position: relative;
-    margin-top: 15%;
-    max-width: 500px;
-    border: 1px solid lightgrey;
-    padding: 20px;
+#login{
+max-width: 250px;
+margin-left:30%;
+margin-top: 10%;
 }
-#btn-login{
+#welcome-message{
+    display:block;
 }

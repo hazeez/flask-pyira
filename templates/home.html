@@ -13,18 +13,27 @@
 {% endblock navbar %}
 
 {% block content %}
-<form role="form" method="post">
-<div class="container login">
-	<h1>SSO Login:</h1><br/>
-<div class="input-group">
-  <input type="text" class="form-control" name="username" placeholder="Enter Username" aria-describedby="basic-addon2">
-  <span class="input-group-addon" id="basic-addon2">@oracle.com</span>
-</div>
-<br>
-<div>
-  <input type="password" class="form-control" name="password" placeholder="Enter Password" aria-describedby="basic-addon2">
-</div><br/><br/>
-<button type="submit" class="btn btn-primary" id="btn-login">Submit</button>
+<form role="form" method="post" action="" name="login">
+<div class="container" id="login">
+    {{ form.hidden_tag() }}
+    <h1>Login:</h1><br/>
+    <p>
+    Enter your JIRA user name: <br>
+    {{ form.username(size=80) }}<br>
+    {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+    </p>
+
+    <p>
+    Enter your JIRA password: <br>
+    {{ form.password(size=80) }}<br>
+    {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+    </p>
+
+<button type="submit" class="btn btn-primary" id="btn-login">Login</button>
 </div>
 </form>
 {% endblock content %}
