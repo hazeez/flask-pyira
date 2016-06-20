@@ -1,5 +1,7 @@
-from flask import Flask, render_template, redirect, session
+from flask import Flask, render_template, redirect, session, flash, jsonify
+import requests
 from forms import LoginForm
+from config import SERVER_URL
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,14 +20,30 @@ def login():
                            form=form)
 
 
-@app.route('/index')
+@app.route('/index', methods=['GET', 'POST'])
 def index():
+    # if the user directly enters /index without authenticating, send him back
+    # to login page for authentication
     try:
         if len(session['username']) == 0:
+            flash('User needs to be logged in first!')
             return redirect('/login')
     except:
         return redirect('/login')
-    return render_template('index.html')
+    username = session['username']
+    password = session['pwd']
+    jql = '/rest/api/2/project/TEST1111'
+    try:
+        response = requests.get(SERVER_URL + jql,
+                                verify=False,
+                                auth=(username, password))
+        issue_json_response = response.json()
+        json_data = jsonify(issue_json_response)
+    except ValueError:
+        flash('Invalid credentials! Try again!')
+        return redirect('/login')
+    return render_template('index.html',
+                           issue_json_response=json_data)
 
 
 @app.route("/logout")
