@@ -5,7 +5,7 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-	      Pyira
+	      PYIRA
       </a>
     </div>
   </div>
@@ -13,8 +13,19 @@
 {% endblock navbar %}
 
 {% block content %}
-	<div class="container">
-		<h1>Hello, World!</h1>
-	</div>
+<form role="form" method="post">
+<div class="container login">
+	<h1>SSO Login:</h1><br/>
+<div class="input-group">
+  <input type="text" class="form-control" name="username" placeholder="Enter Username" aria-describedby="basic-addon2">
+  <span class="input-group-addon" id="basic-addon2">@oracle.com</span>
+</div>
+<br>
+<div>
+  <input type="password" class="form-control" name="password" placeholder="Enter Password" aria-describedby="basic-addon2">
+</div><br/><br/>
+<button type="submit" class="btn btn-primary" id="btn-login">Submit</button>
+</div>
+</form>
 {% endblock content %}
 
