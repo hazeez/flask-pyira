@@ -21,7 +21,7 @@
     Enter your JIRA user name: <br>
     {{ form.username(size=80) }}<br>
     {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: red;">{{ error }}</span>
           {% endfor %}<br>
     </p>
 
@@ -29,7 +29,7 @@
     Enter your JIRA password: <br>
     {{ form.password(size=80) }}<br>
     {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: red;">{{ error }}</span>
           {% endfor %}<br>
     </p>
 
