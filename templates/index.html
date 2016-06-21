@@ -17,6 +17,17 @@
 {% endblock navbar %}
 
 {% block content %}
-{{ issue_json_response }}
+<div class="container col-sm-3">
+    {% set count = 1 %}
+
+    <div id="project-group">
+        <div id="project-title" class="panel panel-default">Projects </div>
+       
+    {% for project in project_data %}
+    <li data-key= {{ project.key }}>{{ project.key }}</li>
+    {% set count = count + 1 %}     
+  
+    {% endfor %}
+</div>
 {% endblock content %}
 

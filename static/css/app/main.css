@@ -3,6 +3,16 @@ max-width: 250px;
 margin-left:30%;
 margin-top: 10%;
 }
-#welcome-message{
-    display:block;
+.flash-messages{
+    max-width: 250px;
+    margin-left: 30%;
+}
+ol, ul, li {
+    list-style: none;
+}
+#project-group{ 
+    float:left;
+    width:250px;
+    overflow-y: auto;
+    height: 1000px;
 }

@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -32,18 +32,18 @@ def index():
         return redirect('/login')
     username = session['username']
     password = session['pwd']
-    jql = '/rest/api/2/project/TEST1111'
+    jql = '/rest/api/2/project'
     try:
         response = requests.get(SERVER_URL + jql,
                                 verify=False,
                                 auth=(username, password))
-        issue_json_response = response.json()
-        json_data = jsonify(issue_json_response)
+        project_data = response.json()
+        # json_data = jsonify(project_data)
     except ValueError:
         flash('Invalid credentials! Try again!')
         return redirect('/login')
     return render_template('index.html',
-                           issue_json_response=json_data)
+                           project_data=project_data)
 
 
 @app.route("/logout")
