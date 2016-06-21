@@ -4,15 +4,23 @@ margin-left:30%;
 margin-top: 10%;
 }
 .flash-messages{
-    max-width: 250px;
+    max-width: 400px;
     margin-left: 30%;
 }
 ol, ul, li {
     list-style: none;
 }
-#project-group{ 
-    float:left;
+#project-group, #issue-group{
     width:250px;
+    position: relative;
     overflow-y: auto;
-    height: 1000px;
+    /* height: 1000px; */
+}
+#project-group{
+    float:left;
+    position: relative;
+}
+a.project{
+    position:relative;
+    z-index: 99999;
 }

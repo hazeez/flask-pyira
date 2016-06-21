@@ -38,7 +38,6 @@ def index():
                                 verify=False,
                                 auth=(username, password))
         project_data = response.json()
-        # json_data = jsonify(project_data)
     except ValueError:
         flash('Invalid credentials! Try again!')
         return redirect('/login')
@@ -46,9 +45,20 @@ def index():
                            project_data=project_data)
 
 
+@app.route('/index/<project_key>', methods=['GET'])
+def project_issues(project_key):
+    jql= '/rest/api/2/search?jql=project=%s&maxresults=-1' % (project_key)
+    response = requests.get(SERVER_URL + jql,verify=False)
+    issue_data = jsonify(response.json())
+    print issue_data
+    return issue_data
+    # return  render_template('issue.html', issue_data=issue_data)
+
+
 @app.route("/logout")
 def logout():
     session.clear()
+    flash('You have successfully logged out')
     return redirect('/login')
 
 
