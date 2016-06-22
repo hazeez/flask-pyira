@@ -56,7 +56,7 @@ def project_issues(project_key):
     count = 1
     issue_data = jira.search_issues('project=%s' % project_key)
     for issue in issue_data:
-        issue_dict[count] = issue.key
+        issue_dict[count] = issue.key # to create a dict like {1,'issue1'}
         count+=1 # increment the count
     issue_json_data = jsonify(issue_dict)
     return issue_json_data
