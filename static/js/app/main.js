@@ -7,8 +7,8 @@ $('a.project').click(function (event){
         ,success: function(response) {
             $('#issue-list').html('');
             for (var key in response.issues) {
-                var val = response.issues[key].key;
-                console.log(val);
+                var value = response.issues[key].key;
+                $('#issue-list').append("<li><a class='issue' data-issue-key="+value+ " href=/index/issue/"+value+">"+value+"</a></li>");
             }
         }
      })
