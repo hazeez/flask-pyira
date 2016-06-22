@@ -1,8 +1,7 @@
 from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
 from forms import LoginForm
-from config import OPTIONS, SERVER_URL
-from jira import JIRA
+from config import SERVER_URL
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,12 +17,17 @@ def login():
         global username, password
         username = session['username']
         password = session['pwd']
-        global jira
-        jira = JIRA(OPTIONS, basic_auth=(username, password))
         return redirect('/index')
     return render_template('home.html',
                            title='Sign In',
                            form=form)
+
+
+def get_response(jql):
+    response = requests.get(SERVER_URL + jql,
+                            verify=False,
+                            auth=(username, password))
+    return response
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -31,17 +35,16 @@ def index():
     # if the user directly enters /index without authenticating, send him back
     # to login page for authentication
     try:
-        if len(session['username']) == 0:
-            flash('User needs to be logged in first!')
+        if not username:
+            flash('Login Required!')
             return redirect('/login')
     except:
         return redirect('/login')
-
-    jql = '/rest/api/2/project'
+    # if the user is authenticated in jira - redirect to index
+    # else ask user to try again
     try:
-        response = requests.get(SERVER_URL + jql,
-                                verify=False,
-                                auth=(username, password))
+        jql = '/rest/api/2/project'
+        response = get_response(jql)
         project_data = response.json()
     except ValueError:
         flash('Invalid credentials! Try again!')
@@ -50,16 +53,13 @@ def index():
                            project_data=project_data)
 
 
-@app.route('/index/<project_key>', methods=['GET'])
+@app.route('/index/<project_key>', methods=['GET', 'POST'])
 def project_issues(project_key):
-    issue_dict = {} # creating an empty dictionary
-    count = 1
-    issue_data = jira.search_issues('project=%s' % project_key)
-    for issue in issue_data:
-        issue_dict[count] = issue.key # to create a dict like {1,'issue1'}
-        count+=1 # increment the count
-    issue_json_data = jsonify(issue_dict)
-    return issue_json_data
+    jql = '/rest/api/2/search?jql=project=%s&maxresults=1000' % (project_key)
+    response = get_response(jql)
+    issue_data = jsonify(response.json())
+    return issue_data
+
 
 @app.route("/logout")
 def logout():
