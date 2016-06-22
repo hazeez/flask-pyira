@@ -15,6 +15,11 @@ def login():
     if form.validate_on_submit():
         session['username'] = form.username.data
         session['pwd'] = form.password.data
+        global username, password
+        username = session['username']
+        password = session['pwd']
+        global jira
+        jira = JIRA(OPTIONS, basic_auth=(username, password))
         return redirect('/index')
     return render_template('home.html',
                            title='Sign In',
@@ -31,10 +36,6 @@ def index():
             return redirect('/login')
     except:
         return redirect('/login')
-    username = session['username']
-    password = session['pwd']
-    global jira
-    jira = JIRA(OPTIONS, basic_auth=(username, password))
 
     jql = '/rest/api/2/project'
     try:
