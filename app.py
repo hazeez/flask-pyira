@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
 from forms import LoginForm
-from config import SERVER_URL
+from config import OPTIONS, SERVER_URL
+from jira import JIRA
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -32,6 +33,9 @@ def index():
         return redirect('/login')
     username = session['username']
     password = session['pwd']
+    global jira
+    jira = JIRA(OPTIONS, basic_auth=(username, password))
+
     jql = '/rest/api/2/project'
     try:
         response = requests.get(SERVER_URL + jql,
@@ -47,13 +51,15 @@ def index():
 
 @app.route('/index/<project_key>', methods=['GET'])
 def project_issues(project_key):
-    jql= '/rest/api/2/search?jql=project=%s&maxresults=-1' % (project_key)
-    response = requests.get(SERVER_URL + jql,verify=False)
-    issue_data = jsonify(response.json())
-    print issue_data
-    return issue_data
-    # return  render_template('issue.html', issue_data=issue_data)
-
+    issue_dict = {} # creating an empty dictionary
+    count = 1
+    issue_data = jira.search_issues('project=%s' % project_key)
+    for issue in issue_data:
+        issue_dict[count] = issue.key
+        # issue_dict['issue%d' % count] = issue.key
+        count+=1 # increment the count
+    issue_json_data = jsonify(issue_dict)
+    return issue_json_data
 
 @app.route("/logout")
 def logout():
