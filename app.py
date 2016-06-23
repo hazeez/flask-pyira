@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
+import json
 from forms import LoginForm
 from config import SERVER_URL
 
@@ -58,6 +59,8 @@ def project_issues(project_key):
     # jql = '/rest/api/2/search?jql=project=%s&maxResults=1000' % (project_key)
     jql = '/rest/api/2/search?jql=project=%s' % (project_key)
     response = get_response(jql)
+    response_data = response.json()['total']
+    print response_data
     issue_data = jsonify(response.json())
     return issue_data
 
