@@ -55,7 +55,8 @@ def index():
 
 @app.route('/index/<project_key>', methods=['GET', 'POST'])
 def project_issues(project_key):
-    jql = '/rest/api/2/search?jql=project=%s&maxresults=1000' % (project_key)
+    # jql = '/rest/api/2/search?jql=project=%s&maxResults=1000' % (project_key)
+    jql = '/rest/api/2/search?jql=project=%s' % (project_key)
     response = get_response(jql)
     issue_data = jsonify(response.json())
     return issue_data
