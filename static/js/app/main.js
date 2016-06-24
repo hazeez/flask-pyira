@@ -51,7 +51,10 @@ $(document).ready(function() {
                         total: totalpages,
                         page: 1,
                         maxVisible: 4 // display maximum 4 pages
-                    }).on('page', function(event, num) {
+                    });
+                    
+                    $('ul.pagination.bootpag li').click(function() {
+                        var num = $(this).attr('data-lp');
                         url = '/index/' + project_name + '/' + num;
                         $.ajax({
                             url: url,
