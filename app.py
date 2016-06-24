@@ -57,7 +57,9 @@ def index():
 def project_issues(project_key, num):
     jql = ''
     if (num == 1):
-        jql = '/rest/api/2/search?jql=project=%s' % (project_key)
+        start_at = 1
+        jql = '/rest/api/2/search?jql=project=%s&startAt=%d' % (project_key,
+                                                                start_at)
     else:
         start_at = 50 * (num - 1)  # if the page is 2, then start at should be
         # from 50
