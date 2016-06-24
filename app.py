@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
-import json
 from forms import LoginForm
 from config import SERVER_URL
 
@@ -54,13 +53,18 @@ def index():
                            project_data=project_data)
 
 
-@app.route('/index/<project_key>', methods=['GET', 'POST'])
-def project_issues(project_key):
-    # jql = '/rest/api/2/search?jql=project=%s&maxResults=1000' % (project_key)
-    jql = '/rest/api/2/search?jql=project=%s' % (project_key)
+@app.route('/index/<project_key>/<int:num>/', methods=['GET', 'POST'])
+def project_issues(project_key, num):
+    jql = ''
+    if (num == 1):
+        jql = '/rest/api/2/search?jql=project=%s' % (project_key)
+    else:
+        start_at = 50 * (num - 1)  # if the page is 2, then start at should be
+        # from 50
+        jql = '/rest/api/2/search?jql=project=%s&startAt=%d' % (project_key,
+                                                                start_at)
     response = get_response(jql)
-    response_data = response.json()['total']
-    print response_data
+    # response_data = response.json()['total']
     issue_data = jsonify(response.json())
     return issue_data
 

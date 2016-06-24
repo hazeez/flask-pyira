@@ -40,7 +40,7 @@ $(document).ready(function() {
                     $('#issue-list').append("<li><a class='issue' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
                 }
                 if (totalpages > 1) {
-                    $('#issue-list').append("<div id='page-selection'></div>");
+                    $('#issue-group').append("<div id='page-selection'></div>");
                     // using jquery bootpag plugin
                     $('#page-selection').bootpag({
                         total: totalpages,
@@ -50,22 +50,14 @@ $(document).ready(function() {
                         $.ajax({
                             url: '/index/' + project_name + '/' + num,
                             success: function(nextissuedata) {
+                                $('#issue-list').html('');
                                 for (var key in nextissuedata.issues) {
                                     var issueid = nextissuedata.issues[key].key;
                                     $('#issue-list').append("<li><a class='issue' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
                                 }
                             }
                         });
-                        return false;
                     });
-                    // for (var i=1; i<=totalpages; i++) {
-                    // if (totalpages % 15 == 0){
-                    // $('<li><a href=/index/project/issues/page/' +i+ '>' + i + '</a> </li>').insertAfter('#previous');
-                    // $('#previous').append("<li><a href=/index/project/issues/page/" +i+ ">" + i + "</a> </li> ");
-                    // } else {
-                    // $('#issue-list-pagination').append("<a href=/index/project/issues/page/" +i+ ">" + i + "</a> " );
-                    // } // closing 
-                    // } // closing for loop  
                 }
             }
         })
