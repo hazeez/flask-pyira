@@ -19,27 +19,29 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="container col-md-3">
-    {% set count = 1 %}
-
-    <div id="project-group">
-        <div id="project-title" class="panel panel-default">Projects </div>
-       
-    {% for project in project_data %}
-    <li> 
-        <a class="project" data-project-key="{{ project.key }}" href="/index/{{
-            project.key }}/1">{{
-            project.key }}</a>
-    </li>
-    {% set count = count + 1 %}     
-  
-    {% endfor %}
-</div>
-<div class="container col-md-3">
-    <div id="issue-group">
-<div id="issue-title" class="panel panel-default">Issues</div>
-<div id="issue-list"></div>
-    </div>
-</div>
+            <div class="container col-md-2">
+                {% set count = 1 %}
+                <div id="project-group">
+                    <div id="project-title" class="panel panel-default">Projects </div>
+                
+                {% for project in project_data %}
+                    <li> 
+                        <a class="project" data-project-key="{{ project.key }}" href="/index/{{
+                            project.key }}/1">{{
+                            project.key }}</a>
+                    </li>
+                    {% set count = count + 1 %}     
+                {% endfor %}
+                </div>
+            </div>
+            <div class="container col-md-2">
+                <div id="issue-group">
+                    <div id="issue-title" class="panel panel-default">Issues</div>
+                    <div id="issue-list"></div>
+                </div>
+            </div>
+            <div class="container col-md-6">
+                <a href="#" id="project-dashboard-link">Generate Dashboard</a>
+            </div>
 {% endblock content %}
 

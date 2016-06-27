@@ -11,12 +11,15 @@ $(document).on({
 
 $(document).ready(function() {
     var project_name = '';
+    $('#project-dashboard-link').hide();
     $('a.project').click(function(event) {
         event.preventDefault();
         var totalpages = 0;
         $.ajax({
             url: $(this).attr('href'),
             success: function(issuedata) {
+                // if the issues are present then show the dashboard link
+                $('#project-dashboard-link').show();
                 // get the total issues
                 total_issues = issuedata.total;
                 //if total_issues more than 50 implement pagination
@@ -34,7 +37,7 @@ $(document).ready(function() {
                 }
                 $('#issue-list').html('');
                 project_name = issuedata.issues[0].fields.project.key;
-                console.log(project_name);
+                $('#project-dashboard-link').attr('href','/index/'+project_name+'/dashboard');
                 /* use this project name and pass it as an ajax call to the 
                 paginated numbers and return the issues for each page */
 
@@ -65,9 +68,9 @@ $(document).ready(function() {
                                     $('#issue-list').append("<li><a class='issue' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
                                 }
                             }
-                        });
+                        }); // ajax function ends here
                     });
-                }
+                } //if construct ends here
             }
         })
         return false; //for good measure
