@@ -75,21 +75,32 @@ def project_issues(project_key, num):
     return issue_data
 
 
+def summary_dict(list_def1, list_def2):
+    """ This function will convert the issue count into a dict """
+    global itr1_summary_dict, itr2_summary_dict
+    itr1_summary_dict, itr2_summary_dict = {}, {}
+    global itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
+                                                        itr1_e_issues
+    itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
+                                                itr1_e_issues = 0, 0, 0, 0, 0
+
+    itr1_a_issues, itr2_a_issues = list_def1.count('A'), list_def2.count('A')
+    itr1_b_issues, itr2_b_issues = list_def1.count('B'), list_def2.count('B')
+    itr1_c_issues, itr2_c_issues = list_def1.count('C'), list_def2.count('C')
+    itr1_d_issues, itr2_d_issues = list_def1.count('D'), list_def2.count('D')
+    itr1_e_issues, itr2_e_issues = list_def1.count('E'), list_def2.count('E')
+    print itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
+                                                        itr1_e_issues
+
+    print itr2_a_issues, itr2_b_issues, itr2_c_issues, itr2_d_issues, \
+                                                        itr2_e_issues
+    return None
+
 @app.route('/index/<project_key>/dashboard/', methods=['GET', 'POST'])
 def project_dashboard(project_key):
     # declare arrays to store the number of a , b, c, d, e issues
-    # itr1_issues_a = []
-    # itr1_issues_b = []
-    # itr1_issues_c = []
-    # itr1_issues_d = []
-    # itr1_issues_e = []
-    #
-    # itr2_issues_a = []
-    # itr2_issues_b = []
-    # itr2_issues_c = []
-    # itr2_issues_d = []
-    # itr2_issues_e = []
-    #
+    global itr1_issues, itr2_issues
+    itr1_issues, itr2_issues = [], []
 
     jql = ''
     # if the total issue count is less than 50 for a project don't request
@@ -98,8 +109,8 @@ def project_dashboard(project_key):
     if (total_issue_count <= 50):
         dashboard_response = response
     else:
-        jql = '/rest/api/2/search?jql=project=%s&maxResults=%d' % (project_key,
-                                                                total_issue_count)
+        jql = '/rest/api/2/search?jql=project=%s&maxResults=%d' % \
+                                    (project_key, total_issue_count)
         dashboard_response = get_response(jql)
 
     for issue in dashboard_response.json()['issues']:
@@ -107,11 +118,42 @@ def project_dashboard(project_key):
             itr_round = issue['fields']['customfield_10755']['value']
             issue_type = issue['fields']['customfield_10764']['value']
             if itr_round.lower() == 'itr1':
-                # if issue_type.lower() == 'a':
-                print issue['key']
-                print issue_type
+                if issue_type.lower() == 'a':
+                    itr1_issues.append('A')
+                    itr1_issues.append(issue['key'])
+                if issue_type.lower() == 'b':
+                    itr1_issues.append('B')
+                    itr1_issues.append(issue['key'])
+                if issue_type.lower() == 'c':
+                    itr1_issues.append('C')
+                    itr1_issues.append(issue['key'])
+                if issue_type.lower() == 'd':
+                    itr1_issues.append('D')
+                    itr1_issues.append(issue['key'])
+                if issue_type.lower() == 'e':
+                    itr1_issues.append('E')
+                    itr1_issues.append(issue['key'])
+
+            if itr_round.lower() == 'itr2':
+                if issue_type.lower() == 'a':
+                    itr2_issues.append('A')
+                    itr2_issues.append(issue['key'])
+                if issue_type.lower() == 'b':
+                    itr2_issues.append('B')
+                    itr2_issues.append(issue['key'])
+                if issue_type.lower() == 'c':
+                    itr2_issues.append('C')
+                    itr2_issues.append(issue['key'])
+                if issue_type.lower() == 'd':
+                    itr2_issues.append('D')
+                    itr2_issues.append(issue['key'])
+                if issue_type.lower() == 'e':
+                    itr2_issues.append('E')
+                    itr2_issues.append(issue['key'])
         except Exception as e:
             print "Error Occurred ", e
+
+    summary_dict(itr1_issues, itr2_issues)  # get the summary
     return render_template('dashboard.html', response=dashboard_response)
 
 

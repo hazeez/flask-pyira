@@ -2,3 +2,5 @@
 *.swp
 *.pyc
 config.py
+*.ipynb
+.ipynb_checkpoints
