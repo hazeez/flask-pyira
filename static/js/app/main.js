@@ -76,5 +76,55 @@ $(document).ready(function() {
         return false; //for good measure
     });
 
+
+    // function to generate dashboard via ajax
+    $('a#project-dashboard-link').click(function(event){
+        event.preventDefault();
+        $.ajax({
+            url : $(this).attr('href'),
+            // success: function (summary_response, itr2_response) {
+            success: function (summary_response) {
+               $("#dashboard-summary").html('');
+               var total_itr1_issues = 0;
+               var total_itr2_issues = 0;
+                total_itr1_issues = summary_response["A1"] + summary_response["B1"] + summary_response["C1"] + summary_response["D1"] + summary_response["E1"];
+               total_itr2_issues = summary_response["A2"] + summary_response["B2"] + summary_response["C2"] + summary_response["D2"] + summary_response["E2"];
+
+               $("#dashboard-summary").html('<table class=table> \
+                <td>Round</td> \
+                <td>A</td> \
+                <td>B</td> \
+                <td>C</td> \
+                <td>D</td> \
+                <td>E</td> \
+                <td>Total</td> \
+               <tr><td>ITR1</td>\
+                   <td>'+summary_response["A1"]+'</td>\
+                   <td>'+summary_response["B1"]+'</td>\
+                   <td>'+summary_response["C1"]+'</td>\
+                   <td>'+summary_response["D1"]+'</td>\
+                   <td>'+summary_response["E1"]+'</td>\
+                   <td>'+total_itr1_issues+'</td>\
+                   </tr><tr>\
+                   <td>ITR2</td>\
+                   <td>'+summary_response["A2"]+'</td>\
+                   <td>'+summary_response["B2"]+'</td>\
+                   <td>'+summary_response["C2"]+'</td>\
+                   <td>'+summary_response["D2"]+'</td>\
+                   <td>'+summary_response["E2"]+'</td>\
+                   <td>'+total_itr2_issues+'</td>\
+                   </tr><tr>'+
+                   '<td>Total</td>\
+                   <td>'+(summary_response["A1"] + summary_response["A2"])+'</td>\
+                   <td>'+(summary_response["B1"] + summary_response["B2"])+'</td>\
+                   <td>'+(summary_response["C1"] + summary_response["C2"])+'</td>\
+                   <td>'+(summary_response["D1"] + summary_response["D2"])+'</td>\
+                   <td>'+(summary_response["E1"] + summary_response["E2"])+'</td>\
+                   <td>'+(total_itr1_issues + total_itr2_issues)+'</td></tr></table>');
+            }
+        }); // ajax function ends here
+
+    });
+
 });
 

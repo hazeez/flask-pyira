@@ -61,9 +61,7 @@ def project_issues(project_key, num):
     global response
     global total_issue_count
     if (num == 1):
-        start_at = 1
-        jql = '/rest/api/2/search?jql=project=%s&startAt=%d' % (project_key,
-                                                                start_at)
+        jql = '/rest/api/2/search?jql=project=%s' % (project_key)
     else:
         start_at = 50 * (num - 1)  # if the page is 2, then start at should be
         # from 50
@@ -78,7 +76,7 @@ def project_issues(project_key, num):
 def summary_dict(list_def1, list_def2):
     """ This function will convert the issue count into a dict """
     global itr1_summary_dict, itr2_summary_dict
-    itr1_summary_dict, itr2_summary_dict = {}, {}
+    itr1_summary_dict = {}
     global itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
                                                         itr1_e_issues
     itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
@@ -89,12 +87,12 @@ def summary_dict(list_def1, list_def2):
     itr1_c_issues, itr2_c_issues = list_def1.count('C'), list_def2.count('C')
     itr1_d_issues, itr2_d_issues = list_def1.count('D'), list_def2.count('D')
     itr1_e_issues, itr2_e_issues = list_def1.count('E'), list_def2.count('E')
-    print itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
-                                                        itr1_e_issues
+    itr1_summary_dict = dict(A1=itr1_a_issues, B1=itr1_b_issues,
+                    C1=itr1_c_issues, D1=itr1_d_issues, E1=itr1_e_issues,
+                    A2=itr2_a_issues, B2=itr2_b_issues, C2=itr2_c_issues,
+                    D2=itr2_d_issues, E2=itr2_e_issues)
+    return jsonify(itr1_summary_dict)
 
-    print itr2_a_issues, itr2_b_issues, itr2_c_issues, itr2_d_issues, \
-                                                        itr2_e_issues
-    return None
 
 @app.route('/index/<project_key>/dashboard/', methods=['GET', 'POST'])
 def project_dashboard(project_key):
@@ -153,8 +151,8 @@ def project_dashboard(project_key):
         except Exception as e:
             print "Error Occurred ", e
 
-    summary_dict(itr1_issues, itr2_issues)  # get the summary
-    return render_template('dashboard.html', response=dashboard_response)
+    summary_response = summary_dict(itr1_issues, itr2_issues)
+    return summary_response
 
 
 @app.route("/logout")
