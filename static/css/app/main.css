@@ -14,7 +14,8 @@ ol, ul, li {
     width:250px;
     position: relative;
     overflow-y: auto;
-    /* height: 1000px; */
+    height: 800px;
+    overflow-x: hidden;
 }
 #project-group{
     float:left;
@@ -23,6 +24,12 @@ ol, ul, li {
 a.project{
     position:relative;
     z-index: 99999;
+}
+div#dashboard-summary{
+    margin-top: 20px;
+}
+th#total-issues-table-row{
+    border-top: none;
 }
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window

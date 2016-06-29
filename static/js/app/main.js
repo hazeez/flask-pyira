@@ -20,6 +20,7 @@ $(document).ready(function() {
             success: function(issuedata) {
                 // if the issues are present then show the dashboard link
                 $('#project-dashboard-link').show();
+                $('div#dashboard-summary').html('');
                 // get the total issues
                 total_issues = issuedata.total;
                 //if total_issues more than 50 implement pagination
@@ -90,7 +91,8 @@ $(document).ready(function() {
                 total_itr1_issues = summary_response["A1"] + summary_response["B1"] + summary_response["C1"] + summary_response["D1"] + summary_response["E1"];
                total_itr2_issues = summary_response["A2"] + summary_response["B2"] + summary_response["C2"] + summary_response["D2"] + summary_response["E2"];
 
-               $("#dashboard-summary").html('<table class=table> \
+               $("#dashboard-summary").html('<table class=table id="total-issues-summary-table"> \
+                <tr><th id="total-issues-table-row">Total Issues</th></tr>\
                 <td>Round</td> \
                 <td>A</td> \
                 <td>B</td> \
