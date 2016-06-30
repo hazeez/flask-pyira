@@ -1,5 +1,5 @@
-body{
-    font-size:0.5em;
+body.base{
+    font-size:12px;
 }
 #login{
 max-width: 350px;
@@ -16,14 +16,18 @@ margin-top: 10%;
 ol, ul, li {
     list-style: none;
 }
+#project-title, #issue-title{
+    width: 200px;
+}
 #project-group, #issue-group{
-    width:250px;
+    width:200px;
     position: relative;
     overflow-y: auto;
     height: 800px;
     overflow-x: hidden;
+    border-right: 1px solid #E5E5E5;
 }
-#project-group{
+#project-list{
     float:left;
     position: relative;
 }
@@ -36,6 +40,22 @@ div#dashboard-summary{
 }
 th#total-issues-table-row{
     border-top: none;
+}
+.table>tbody>tr>th.blank-table-header{
+    border-top: None;
+}
+#total-issues-summary-table{
+    border: None;
+    font-size:11px;
+}
+#table-itr1{
+    background: #E3E5E5;
+}
+#table-itr2{
+    background: #E5E3E3;
+}
+#table-total{
+    background: #DAE3E5;
 }
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window

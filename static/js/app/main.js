@@ -19,6 +19,8 @@ $(document).ready(function() {
             url: $(this).attr('href'),
             success: function(issuedata) {
                 // if the issues are present then show the dashboard link
+                $('#issue-title').show();
+                $('#issue-group').show();
                 $('#project-dashboard-link').show();
                 $('div#dashboard-summary').html('');
                 // get the total issues
@@ -94,9 +96,11 @@ $(document).ready(function() {
                $("#dashboard-summary").html('<table class="table col-md-12" id=total-issues-summary-table>\
                <tr>\
                <td>\
-                   <table class="table col-md-3">\
-                    <th id="total-issues-table-row" colspan=6>Total Issues - ITR1</th>\
+                   <table class="table col-md-4">\
+                   <th class=blank-table-header></th>\
+                    <th id="table-itr1" colspan=6>ITR1</th>\
                         <tr>\
+                            <td><strong>Description</strong></td> \
                             <td>A</td> \
                             <td>B</td> \
                             <td>C</td> \
@@ -105,6 +109,7 @@ $(document).ready(function() {
                             <td>Total</td> \
                         </tr>\
                     <tr>\
+                        <td><strong>Total Issues</strong></td>\
                         <td>'+summary_response["A1"]+'</td>\
                         <td>'+summary_response["B1"]+'</td>\
                         <td>'+summary_response["C1"]+'</td>\
@@ -116,8 +121,8 @@ $(document).ready(function() {
                     </td>\
                 \
                     <td>\
-                    <table class="table col-md-3">\
-                    <th id="total-issues-table-row" colspan=6>Total Issues - ITR2</th>\
+                    <table class="table col-md-4">\
+                    <th id="table-itr2" colspan=6>ITR2</th>\
                         <tr>\
                             <td>A</td> \
                             <td>B</td> \
@@ -133,6 +138,28 @@ $(document).ready(function() {
                     <td>'+summary_response["D2"]+'</td>\
                     <td>'+summary_response["E2"]+'</td>\
                     <td>'+total_itr2_issues+'</td>\
+                    </tr>\
+                    </table>\
+                    </td>\
+                    \
+                    <td>\
+                    <table class="table col-md-4">\
+                    <th id="table-total" colspan=6>Total (ITR1 + ITR2)</th>\
+                        <tr>\
+                            <td>A</td> \
+                            <td>B</td> \
+                            <td>C</td> \
+                            <td>D</td> \
+                            <td>E</td> \
+                            <td>Total</td> \
+                        </tr>\
+                    <tr>\
+                    <td>'+(summary_response["A1"] + summary_response["A2"])+'</td>\
+                    <td>'+(summary_response["B1"] + summary_response["B2"])+'</td>\
+                    <td>'+(summary_response["C1"] + summary_response["C2"])+'</td>\
+                    <td>'+(summary_response["D1"] + summary_response["D2"])+'</td>\
+                    <td>'+(summary_response["E1"] + summary_response["E2"])+'</td>\
+                    <td>'+(total_itr1_issues + total_itr2_issues)+'</td>\
                     </tr>\
                     </table>\
                 <td>\

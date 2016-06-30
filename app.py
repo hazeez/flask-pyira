@@ -75,7 +75,7 @@ def project_issues(project_key, num):
 
 def summary_dict(list_def1, list_def2):
     """ This function will convert the issue count into a dict """
-    global itr1_summary_dict, itr2_summary_dict
+    global itr1_summary_dict
     itr1_summary_dict = {}
     global itr1_a_issues, itr1_b_issues, itr1_c_issues, itr1_d_issues, \
                                                         itr1_e_issues
@@ -97,8 +97,8 @@ def summary_dict(list_def1, list_def2):
 @app.route('/index/<project_key>/dashboard/', methods=['GET', 'POST'])
 def project_dashboard(project_key):
     # declare arrays to store the number of a , b, c, d, e issues
-    global itr1_issues, itr2_issues
-    itr1_issues, itr2_issues = [], []
+    global itr1_issues, itr2_issues, itr1_closed_issues, itr2_closed_issues
+    itr1_issues, itr2_issues, itr1_closed_issues, itr2_closed_issues = [], [], [], []
 
     jql = ''
     # if the total issue count is less than 50 for a project don't request
@@ -115,39 +115,50 @@ def project_dashboard(project_key):
         try:
             itr_round = issue['fields']['customfield_10755']['value']
             issue_type = issue['fields']['customfield_10764']['value']
+            issue_status = issue['fields']['status']['name']
             if itr_round.lower() == 'itr1':
                 if issue_type.lower() == 'a':
                     itr1_issues.append('A')
                     itr1_issues.append(issue['key'])
+                    itr1_issues.append(issue_status)
                 if issue_type.lower() == 'b':
                     itr1_issues.append('B')
                     itr1_issues.append(issue['key'])
+                    itr1_issues.append(issue_status)
                 if issue_type.lower() == 'c':
                     itr1_issues.append('C')
                     itr1_issues.append(issue['key'])
+                    itr1_issues.append(issue_status)
                 if issue_type.lower() == 'd':
                     itr1_issues.append('D')
                     itr1_issues.append(issue['key'])
+                    itr1_issues.append(issue_status)
                 if issue_type.lower() == 'e':
                     itr1_issues.append('E')
                     itr1_issues.append(issue['key'])
+                    itr1_issues.append(issue_status)
 
             if itr_round.lower() == 'itr2':
                 if issue_type.lower() == 'a':
                     itr2_issues.append('A')
                     itr2_issues.append(issue['key'])
+                    itr2_issues.append(issue_status)
                 if issue_type.lower() == 'b':
                     itr2_issues.append('B')
                     itr2_issues.append(issue['key'])
+                    itr2_issues.append(issue_status)
                 if issue_type.lower() == 'c':
                     itr2_issues.append('C')
                     itr2_issues.append(issue['key'])
+                    itr2_issues.append(issue_status)
                 if issue_type.lower() == 'd':
                     itr2_issues.append('D')
                     itr2_issues.append(issue['key'])
+                    itr2_issues.append(issue_status)
                 if issue_type.lower() == 'e':
                     itr2_issues.append('E')
                     itr2_issues.append(issue['key'])
+                    itr2_issues.append(issue_status)
         except Exception as e:
             print "Error Occurred ", e
 
