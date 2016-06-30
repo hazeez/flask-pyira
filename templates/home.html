@@ -16,10 +16,10 @@
 <form role="form" method="post" action="" name="login">
 <div class="container" id="login">
     {{ form.hidden_tag() }}
-    <h1>Login:</h1><br/>
+    <h1>Sign In:</h1><br/>
     <p>
     Enter your JIRA user name: <br>
-    {{ form.username(size=80) }}<br>
+    {{ form.username(size=80, class="form-control") }}<br>
     {% for error in form.username.errors %}
             <span style="color: red;">{{ error }}</span>
           {% endfor %}<br>
@@ -27,7 +27,7 @@
 
     <p>
     Enter your JIRA password: <br>
-    {{ form.password(size=80) }}<br>
+    {{ form.password(size=80, class="form-control") }}<br>
     {% for error in form.password.errors %}
             <span style="color: red;">{{ error }}</span>
           {% endfor %}<br>

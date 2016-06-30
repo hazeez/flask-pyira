@@ -1,7 +1,13 @@
+body{
+    font-size:0.5em;
+}
 #login{
-max-width: 250px;
-margin-left:30%;
+max-width: 350px;
+margin-left:40%;
 margin-top: 10%;
+}
+#btn-login{
+    margin-left: 35%;
 }
 .flash-messages{
     max-width: 400px;
