@@ -86,6 +86,8 @@ def summary_dict(list_def1, list_def2):
     itr2_a_closed, itr2_b_closed, itr2_c_closed, itr2_d_closed, \
         itr2_e_closed = 0, 0, 0, 0, 0
     itr1_summary_dict = {}
+    print list_def1
+    print list_def2
 
     itr1_a_issues, itr2_a_issues = list_def1.count('A'), list_def2.count('A')
     itr1_b_issues, itr2_b_issues = list_def1.count('B'), list_def2.count('B')
