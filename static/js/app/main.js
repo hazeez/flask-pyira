@@ -91,13 +91,18 @@ $(document).ready(function() {
                var total_itr1_issues = 0;
                var total_itr2_issues = 0;
                var total_itr1_closed = 0;
-               var total_itr2_closed = 0;
+               var total_itr1_closed = 0;
+               var total_itr2_resolved = 0;
+               var total_itr2_resolved = 0;
 
                 total_itr1_issues = summary_response["A1"] + summary_response["B1"] + summary_response["C1"] + summary_response["D1"] + summary_response["E1"];
                total_itr2_issues = summary_response["A2"] + summary_response["B2"] + summary_response["C2"] + summary_response["D2"] + summary_response["E2"];
 
                 total_itr1_closed = summary_response["A1C"] + summary_response["B1C"] + summary_response["C1C"] + summary_response["D1C"] + summary_response["E1C"];
                total_itr2_closed = summary_response["A2C"] + summary_response["B2C"] + summary_response["C2C"] + summary_response["D2C"] + summary_response["E2C"];
+
+                total_itr1_resolved = summary_response["A1R"] + summary_response["B1R"] + summary_response["C1R"] + summary_response["D1R"] + summary_response["E1R"];
+               total_itr2_resolved = summary_response["A2R"] + summary_response["B2R"] + summary_response["C2R"] + summary_response["D2R"] + summary_response["E2R"];
 
                $("#dashboard-summary").html('<table class="table col-md-12" id=total-issues-summary-table>\
                <tr>\
@@ -132,6 +137,15 @@ $(document).ready(function() {
                         <td>'+summary_response["E1C"]+'</td>\
                         <td>'+total_itr1_closed+'</td>\
                     </tr>\
+                    <tr>\
+                        <td><strong>Resolved Issues</strong></td>\
+                        <td>'+summary_response["A1R"]+'</td>\
+                        <td>'+summary_response["B1R"]+'</td>\
+                        <td>'+summary_response["C1R"]+'</td>\
+                        <td>'+summary_response["D1R"]+'</td>\
+                        <td>'+summary_response["E1R"]+'</td>\
+                        <td>'+total_itr1_resolved+'</td>\
+                    </tr>\
                     </table>\
                     </td>\
                 \
@@ -162,6 +176,14 @@ $(document).ready(function() {
                     <td>'+summary_response["E2C"]+'</td>\
                     <td>'+total_itr2_closed+'</td>\
                     </tr>\
+                    <tr>\
+                    <td>'+summary_response["A2R"]+'</td>\
+                    <td>'+summary_response["B2R"]+'</td>\
+                    <td>'+summary_response["C2R"]+'</td>\
+                    <td>'+summary_response["D2R"]+'</td>\
+                    <td>'+summary_response["E2R"]+'</td>\
+                    <td>'+total_itr2_resolved+'</td>\
+                    </tr>\
                     </table>\
                     </td>\
                     \
@@ -191,6 +213,14 @@ $(document).ready(function() {
                     <td>'+(summary_response["D1C"] + summary_response["D2C"])+'</td>\
                     <td>'+(summary_response["E1C"] + summary_response["E2C"])+'</td>\
                     <td>'+(total_itr1_closed + total_itr2_closed)+'</td>\
+                    </tr>\
+                    <tr>\
+                    <td>'+(summary_response["A1R"] + summary_response["A2R"])+'</td>\
+                    <td>'+(summary_response["B1R"] + summary_response["B2R"])+'</td>\
+                    <td>'+(summary_response["C1R"] + summary_response["C2R"])+'</td>\
+                    <td>'+(summary_response["D1R"] + summary_response["D2R"])+'</td>\
+                    <td>'+(summary_response["E1R"] + summary_response["E2R"])+'</td>\
+                    <td>'+(total_itr1_resolved + total_itr2_resolved)+'</td>\
                     </tr>\
                     </table>\
                 <td>\

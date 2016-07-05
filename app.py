@@ -81,10 +81,17 @@ def summary_dict(list_def1, list_def2):
         itr1_e_issues = 0, 0, 0, 0, 0
     itr2_a_issues, itr2_b_issues, itr2_c_issues, itr2_d_issues, \
         itr2_e_issues = 0, 0, 0, 0, 0
-    itr1_a_closed, itr1_b_closed, itr1_c_closed, itr1_d_issues, \
+
+    itr1_a_closed, itr1_b_closed, itr1_c_closed, itr1_d_closed, \
         itr1_e_closed = 0, 0, 0, 0, 0
     itr2_a_closed, itr2_b_closed, itr2_c_closed, itr2_d_closed, \
         itr2_e_closed = 0, 0, 0, 0, 0
+
+    itr1_a_resolved, itr1_b_resolved, itr1_c_resolved, itr1_d_resolved, \
+        itr1_e_resolved = 0, 0, 0, 0, 0
+    itr2_a_resolved, itr2_b_resolved, itr2_c_resolved, itr2_d_resolved, \
+        itr2_e_resolved = 0, 0, 0, 0, 0
+
     itr1_summary_dict = {}
     print list_def1
     print list_def2
@@ -106,13 +113,28 @@ def summary_dict(list_def1, list_def2):
     itr1_e_closed, itr2_e_closed = list_def1.count('E$Closed'), \
         list_def2.count('E$Closed')
 
+    itr1_a_resolved, itr2_a_resolved = list_def1.count('A$Resolved'), \
+        list_def2.count('A$Resolved')
+    itr1_b_resolved, itr2_b_resolved = list_def1.count('B$Resolved'), \
+        list_def2.count('B$Resolved')
+    itr1_c_resolved, itr2_c_resolved = list_def1.count('C$Resolved'), \
+        list_def2.count('C$Resolved')
+    itr1_d_resolved, itr2_d_resolved = list_def1.count('D$Resolved'), \
+        list_def2.count('D$Resolved')
+    itr1_e_resolved, itr2_e_resolved = list_def1.count('E$Resolved'), \
+        list_def2.count('E$Resolved')
+
     itr1_summary_dict = dict(A1=itr1_a_issues, B1=itr1_b_issues,
         C1=itr1_c_issues, D1=itr1_d_issues, E1=itr1_e_issues,
         A2=itr2_a_issues, B2=itr2_b_issues, C2=itr2_c_issues,
         D2=itr2_d_issues, E2=itr2_e_issues, A1C=itr1_a_closed,
         B1C=itr1_b_closed, C1C=itr1_c_closed, D1C=itr1_d_closed,
         E1C=itr1_e_closed, A2C=itr2_a_closed, B2C=itr2_b_closed,
-        C2C=itr2_c_closed, D2C=itr2_d_closed, E2C=itr2_e_closed)
+        C2C=itr2_c_closed, D2C=itr2_d_closed, E2C=itr2_e_closed,
+        A1R=itr1_a_resolved, B1R=itr1_b_resolved, C1R=itr1_c_resolved,
+        D1R=itr1_d_resolved, E1R=itr1_e_resolved, A2R=itr2_a_resolved,
+        B2R=itr2_b_resolved, C2R=itr2_c_resolved, D2R=itr2_d_resolved,
+        E2R=itr2_e_resolved)
     return jsonify(itr1_summary_dict)
 
 
