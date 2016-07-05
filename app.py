@@ -102,9 +102,12 @@ def summary_dict(list_def1, list_def2):
     itr2_a_reopen, itr2_b_reopen, itr2_c_reopen, itr2_d_reopen, \
         itr2_e_reopen = 0, 0, 0, 0, 0
 
+    itr1_a_open, itr1_b_open, itr1_c_open, itr1_d_open, \
+        itr1_e_open = 0, 0, 0, 0, 0
+    itr2_a_open, itr2_b_open, itr2_c_open, itr2_d_open, \
+        itr2_e_open = 0, 0, 0, 0, 0
+
     itr1_summary_dict = {}
-    print list_def1
-    print list_def2
 
     itr1_a_issues, itr2_a_issues = list_def1.count('A'), list_def2.count('A')
     itr1_b_issues, itr2_b_issues = list_def1.count('B'), list_def2.count('B')
@@ -156,6 +159,17 @@ def summary_dict(list_def1, list_def2):
     itr1_e_reopen, itr2_e_reopen = list_def1.count('E$Reopened'), \
         list_def2.count('E$Reopened')
 
+    itr1_a_open, itr2_a_open = list_def1.count('A$Open'), \
+        list_def2.count('A$Open')
+    itr1_b_open, itr2_b_open = list_def1.count('B$Open'), \
+        list_def2.count('B$Open')
+    itr1_c_open, itr2_c_open = list_def1.count('C$Open'), \
+        list_def2.count('C$Open')
+    itr1_d_open, itr2_d_open = list_def1.count('D$Open'), \
+        list_def2.count('D$Open')
+    itr1_e_open, itr2_e_open = list_def1.count('E$Open'), \
+        list_def2.count('E$Open')
+
     itr1_summary_dict = dict(A1=itr1_a_issues, B1=itr1_b_issues,
         C1=itr1_c_issues, D1=itr1_d_issues, E1=itr1_e_issues,
         A2=itr2_a_issues, B2=itr2_b_issues, C2=itr2_c_issues,
@@ -172,7 +186,10 @@ def summary_dict(list_def1, list_def2):
         D2IP=itr2_d_in_progs, E2IP=itr2_e_in_progs, A1RO=itr1_a_reopen,
         B1RO=itr1_b_reopen, C1RO=itr1_c_reopen, D1RO=itr1_d_reopen,
         E1RO=itr1_e_reopen, A2RO=itr2_a_reopen, B2RO=itr2_b_reopen,
-        C2RO=itr2_c_reopen, D2RO=itr2_d_reopen, E2RO=itr2_e_reopen)
+        C2RO=itr2_c_reopen, D2RO=itr2_d_reopen, E2RO=itr2_e_reopen,
+        A1O=itr1_a_open, B1O=itr1_b_open, C1O=itr1_c_open, D1O=itr1_d_open,
+        E1O=itr1_e_open, A2O=itr2_a_open, B2O=itr2_b_open, C2O=itr2_c_open,
+        D2O=itr2_d_open, E2O=itr2_e_open)
     return jsonify(itr1_summary_dict)
 
 

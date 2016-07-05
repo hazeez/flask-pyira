@@ -98,6 +98,9 @@ $(document).ready(function() {
                var total_itr2_inprogress = 0;
                var total_itr1_reopened = 0;
                var total_itr2_reopened = 0;
+               var total_itr1_opened = 0;
+               var total_itr2_opened = 0;
+
                 total_itr1_issues = summary_response["A1"] + summary_response["B1"] + summary_response["C1"] + summary_response["D1"] + summary_response["E1"];
                total_itr2_issues = summary_response["A2"] + summary_response["B2"] + summary_response["C2"] + summary_response["D2"] + summary_response["E2"];
 
@@ -112,6 +115,9 @@ $(document).ready(function() {
 
                 total_itr1_reopened = summary_response["A1RO"] + summary_response["B1RO"] + summary_response["C1RO"] + summary_response["D1RO"] + summary_response["E1RO"];
                total_itr2_reopened = summary_response["A2RO"] + summary_response["B2RO"] + summary_response["C2RO"] + summary_response["D2RO"] + summary_response["E2RO"];
+
+                total_itr1_opened = summary_response["A1O"] + summary_response["B1O"] + summary_response["C1O"] + summary_response["D1O"] + summary_response["E1O"];
+               total_itr2_opened = summary_response["A2O"] + summary_response["B2O"] + summary_response["C2O"] + summary_response["D2O"] + summary_response["E2O"];
 
                $("#dashboard-summary").html('<table class="table col-md-12" id=total-issues-summary-table>\
                <tr>\
@@ -173,6 +179,15 @@ $(document).ready(function() {
                         <td>'+summary_response["E1RO"]+'</td>\
                         <td>'+total_itr1_reopened+'</td>\
                     </tr>\
+                    <tr>\
+                        <td><strong>Open</strong></td>\
+                        <td>'+summary_response["A1O"]+'</td>\
+                        <td>'+summary_response["B1O"]+'</td>\
+                        <td>'+summary_response["C1O"]+'</td>\
+                        <td>'+summary_response["D1O"]+'</td>\
+                        <td>'+summary_response["E1O"]+'</td>\
+                        <td>'+total_itr1_opened+'</td>\
+                    </tr>\
                     </table>\
                     </td>\
                 \
@@ -226,6 +241,14 @@ $(document).ready(function() {
                     <td>'+summary_response["D2RO"]+'</td>\
                     <td>'+summary_response["E2RO"]+'</td>\
                     <td>'+total_itr2_reopened+'</td>\
+                    <tr>\
+                    <td>'+summary_response["A2O"]+'</td>\
+                    <td>'+summary_response["B2O"]+'</td>\
+                    <td>'+summary_response["C2O"]+'</td>\
+                    <td>'+summary_response["D2O"]+'</td>\
+                    <td>'+summary_response["E2O"]+'</td>\
+                    <td>'+total_itr2_reopened+'</td>\
+                    </tr>\
                     </tr>\
                     </table>\
                     </td>\
@@ -280,6 +303,14 @@ $(document).ready(function() {
                     <td>'+(summary_response["D1RO"] + summary_response["D2RO"])+'</td>\
                     <td>'+(summary_response["E1RO"] + summary_response["E2RO"])+'</td>\
                     <td>'+(total_itr1_reopened + total_itr2_reopened)+'</td>\
+                    </tr>\
+                    <tr>\
+                    <td>'+(summary_response["A1O"] + summary_response["A2O"])+'</td>\
+                    <td>'+(summary_response["B1O"] + summary_response["B2O"])+'</td>\
+                    <td>'+(summary_response["C1O"] + summary_response["C2O"])+'</td>\
+                    <td>'+(summary_response["D1O"] + summary_response["D2O"])+'</td>\
+                    <td>'+(summary_response["E1O"] + summary_response["E2O"])+'</td>\
+                    <td>'+(total_itr1_opened + total_itr2_opened)+'</td>\
                     </tr>\
                     </table>\
                 <td>\
