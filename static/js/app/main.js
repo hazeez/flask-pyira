@@ -143,7 +143,7 @@ $(document).ready(function() {
                         <td>'+summary_response["E1"]+'</td>\
                         <td>'+total_itr1_issues+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row">\
                         <td><strong>Closed</strong></td>\
                         <td>'+summary_response["A1C"]+'</td>\
                         <td>'+summary_response["B1C"]+'</td>\
@@ -152,7 +152,7 @@ $(document).ready(function() {
                         <td>'+summary_response["E1C"]+'</td>\
                         <td>'+total_itr1_closed+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                         <td><strong>Resolved</strong></td>\
                         <td>'+summary_response["A1R"]+'</td>\
                         <td>'+summary_response["B1R"]+'</td>\
@@ -161,7 +161,7 @@ $(document).ready(function() {
                         <td>'+summary_response["E1R"]+'</td>\
                         <td>'+total_itr1_resolved+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                         <td><strong>InProgress</strong></td>\
                         <td>'+summary_response["A1IP"]+'</td>\
                         <td>'+summary_response["B1IP"]+'</td>\
@@ -170,7 +170,7 @@ $(document).ready(function() {
                         <td>'+summary_response["E1IP"]+'</td>\
                         <td>'+total_itr1_inprogress+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                         <td><strong>ReOpened</strong></td>\
                         <td>'+summary_response["A1RO"]+'</td>\
                         <td>'+summary_response["B1RO"]+'</td>\
@@ -179,7 +179,7 @@ $(document).ready(function() {
                         <td>'+summary_response["E1RO"]+'</td>\
                         <td>'+total_itr1_reopened+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                         <td><strong>Open</strong></td>\
                         <td>'+summary_response["A1O"]+'</td>\
                         <td>'+summary_response["B1O"]+'</td>\
@@ -210,7 +210,7 @@ $(document).ready(function() {
                     <td>'+summary_response["E2"]+'</td>\
                     <td>'+total_itr2_issues+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row">\
                     <td>'+summary_response["A2C"]+'</td>\
                     <td>'+summary_response["B2C"]+'</td>\
                     <td>'+summary_response["C2C"]+'</td>\
@@ -218,7 +218,7 @@ $(document).ready(function() {
                     <td>'+summary_response["E2C"]+'</td>\
                     <td>'+total_itr2_closed+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+summary_response["A2R"]+'</td>\
                     <td>'+summary_response["B2R"]+'</td>\
                     <td>'+summary_response["C2R"]+'</td>\
@@ -226,7 +226,7 @@ $(document).ready(function() {
                     <td>'+summary_response["E2R"]+'</td>\
                     <td>'+total_itr2_resolved+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+summary_response["A2IP"]+'</td>\
                     <td>'+summary_response["B2IP"]+'</td>\
                     <td>'+summary_response["C2IP"]+'</td>\
@@ -234,20 +234,20 @@ $(document).ready(function() {
                     <td>'+summary_response["E2IP"]+'</td>\
                     <td>'+total_itr2_inprogress+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+summary_response["A2RO"]+'</td>\
                     <td>'+summary_response["B2RO"]+'</td>\
                     <td>'+summary_response["C2RO"]+'</td>\
                     <td>'+summary_response["D2RO"]+'</td>\
                     <td>'+summary_response["E2RO"]+'</td>\
                     <td>'+total_itr2_reopened+'</td>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+summary_response["A2O"]+'</td>\
                     <td>'+summary_response["B2O"]+'</td>\
                     <td>'+summary_response["C2O"]+'</td>\
                     <td>'+summary_response["D2O"]+'</td>\
                     <td>'+summary_response["E2O"]+'</td>\
-                    <td>'+total_itr2_reopened+'</td>\
+                    <td>'+total_itr2_opened+'</td>\
                     </tr>\
                     </tr>\
                     </table>\
@@ -272,7 +272,7 @@ $(document).ready(function() {
                     <td>'+(summary_response["E1"] + summary_response["E2"])+'</td>\
                     <td>'+(total_itr1_issues + total_itr2_issues)+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row">\
                     <td>'+(summary_response["A1C"] + summary_response["A2C"])+'</td>\
                     <td>'+(summary_response["B1C"] + summary_response["B2C"])+'</td>\
                     <td>'+(summary_response["C1C"] + summary_response["C2C"])+'</td>\
@@ -280,7 +280,7 @@ $(document).ready(function() {
                     <td>'+(summary_response["E1C"] + summary_response["E2C"])+'</td>\
                     <td>'+(total_itr1_closed + total_itr2_closed)+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+(summary_response["A1R"] + summary_response["A2R"])+'</td>\
                     <td>'+(summary_response["B1R"] + summary_response["B2R"])+'</td>\
                     <td>'+(summary_response["C1R"] + summary_response["C2R"])+'</td>\
@@ -288,7 +288,7 @@ $(document).ready(function() {
                     <td>'+(summary_response["E1R"] + summary_response["E2R"])+'</td>\
                     <td>'+(total_itr1_resolved + total_itr2_resolved)+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+(summary_response["A1IP"] + summary_response["A2IP"])+'</td>\
                     <td>'+(summary_response["B1IP"] + summary_response["B2IP"])+'</td>\
                     <td>'+(summary_response["C1IP"] + summary_response["C2IP"])+'</td>\
@@ -296,7 +296,7 @@ $(document).ready(function() {
                     <td>'+(summary_response["E1IP"] + summary_response["E2IP"])+'</td>\
                     <td>'+(total_itr1_inprogress + total_itr2_inprogress)+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+(summary_response["A1RO"] + summary_response["A2RO"])+'</td>\
                     <td>'+(summary_response["B1RO"] + summary_response["B2RO"])+'</td>\
                     <td>'+(summary_response["C1RO"] + summary_response["C2RO"])+'</td>\
@@ -304,7 +304,7 @@ $(document).ready(function() {
                     <td>'+(summary_response["E1RO"] + summary_response["E2RO"])+'</td>\
                     <td>'+(total_itr1_reopened + total_itr2_reopened)+'</td>\
                     </tr>\
-                    <tr>\
+                    <tr class="highlight-row-sub">\
                     <td>'+(summary_response["A1O"] + summary_response["A2O"])+'</td>\
                     <td>'+(summary_response["B1O"] + summary_response["B2O"])+'</td>\
                     <td>'+(summary_response["C1O"] + summary_response["C2O"])+'</td>\

@@ -57,6 +57,12 @@ th#total-issues-table-row{
 #table-total{
     background: #DAE3E5;
 }
+.highlight-row{
+    background: #FFFFE0;
+}
+.highlight-row-sub{
+    background: #FCF8E3;
+}
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window
    with position:fixed. Width, height, top and left speak
