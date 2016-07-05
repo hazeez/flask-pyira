@@ -91,9 +91,11 @@ $(document).ready(function() {
                var total_itr1_issues = 0;
                var total_itr2_issues = 0;
                var total_itr1_closed = 0;
-               var total_itr1_closed = 0;
+               var total_itr2_closed = 0;
+               var total_itr1_resolved = 0;
                var total_itr2_resolved = 0;
-               var total_itr2_resolved = 0;
+               var total_itr1_inprogress = 0;
+               var total_itr2_inprogress = 0;
 
                 total_itr1_issues = summary_response["A1"] + summary_response["B1"] + summary_response["C1"] + summary_response["D1"] + summary_response["E1"];
                total_itr2_issues = summary_response["A2"] + summary_response["B2"] + summary_response["C2"] + summary_response["D2"] + summary_response["E2"];
@@ -104,6 +106,9 @@ $(document).ready(function() {
                 total_itr1_resolved = summary_response["A1R"] + summary_response["B1R"] + summary_response["C1R"] + summary_response["D1R"] + summary_response["E1R"];
                total_itr2_resolved = summary_response["A2R"] + summary_response["B2R"] + summary_response["C2R"] + summary_response["D2R"] + summary_response["E2R"];
 
+                total_itr1_inprogress = summary_response["A1IP"] + summary_response["B1IP"] + summary_response["C1IP"] + summary_response["D1IP"] + summary_response["E1IP"];
+               total_itr2_inprogress = summary_response["A2IP"] + summary_response["B2IP"] + summary_response["C2IP"] + summary_response["D2IP"] + summary_response["E2IP"];
+
                $("#dashboard-summary").html('<table class="table col-md-12" id=total-issues-summary-table>\
                <tr>\
                <td>\
@@ -111,7 +116,7 @@ $(document).ready(function() {
                    <th class=blank-table-header></th>\
                     <th id="table-itr1" colspan=6>ITR1</th>\
                         <tr>\
-                            <td><strong>Description</strong></td> \
+                            <td><strong>Issues</strong></td> \
                             <td>A</td> \
                             <td>B</td> \
                             <td>C</td> \
@@ -120,7 +125,7 @@ $(document).ready(function() {
                             <td>Total</td> \
                         </tr>\
                     <tr>\
-                        <td><strong>Total Issues</strong></td>\
+                        <td><strong>Total</strong></td>\
                         <td>'+summary_response["A1"]+'</td>\
                         <td>'+summary_response["B1"]+'</td>\
                         <td>'+summary_response["C1"]+'</td>\
@@ -129,7 +134,7 @@ $(document).ready(function() {
                         <td>'+total_itr1_issues+'</td>\
                     </tr>\
                     <tr>\
-                        <td><strong>Closed Issues</strong></td>\
+                        <td><strong>Closed</strong></td>\
                         <td>'+summary_response["A1C"]+'</td>\
                         <td>'+summary_response["B1C"]+'</td>\
                         <td>'+summary_response["C1C"]+'</td>\
@@ -138,13 +143,22 @@ $(document).ready(function() {
                         <td>'+total_itr1_closed+'</td>\
                     </tr>\
                     <tr>\
-                        <td><strong>Resolved Issues</strong></td>\
+                        <td><strong>Resolved</strong></td>\
                         <td>'+summary_response["A1R"]+'</td>\
                         <td>'+summary_response["B1R"]+'</td>\
                         <td>'+summary_response["C1R"]+'</td>\
                         <td>'+summary_response["D1R"]+'</td>\
                         <td>'+summary_response["E1R"]+'</td>\
                         <td>'+total_itr1_resolved+'</td>\
+                    </tr>\
+                    <tr>\
+                        <td><strong>InProgress</strong></td>\
+                        <td>'+summary_response["A1IP"]+'</td>\
+                        <td>'+summary_response["B1IP"]+'</td>\
+                        <td>'+summary_response["C1IP"]+'</td>\
+                        <td>'+summary_response["D1IP"]+'</td>\
+                        <td>'+summary_response["E1IP"]+'</td>\
+                        <td>'+total_itr1_inprogress+'</td>\
                     </tr>\
                     </table>\
                     </td>\
@@ -184,6 +198,14 @@ $(document).ready(function() {
                     <td>'+summary_response["E2R"]+'</td>\
                     <td>'+total_itr2_resolved+'</td>\
                     </tr>\
+                    <tr>\
+                    <td>'+summary_response["A2IP"]+'</td>\
+                    <td>'+summary_response["B2IP"]+'</td>\
+                    <td>'+summary_response["C2IP"]+'</td>\
+                    <td>'+summary_response["D2IP"]+'</td>\
+                    <td>'+summary_response["E2IP"]+'</td>\
+                    <td>'+total_itr2_inprogress+'</td>\
+                    </tr>\
                     </table>\
                     </td>\
                     \
@@ -221,6 +243,14 @@ $(document).ready(function() {
                     <td>'+(summary_response["D1R"] + summary_response["D2R"])+'</td>\
                     <td>'+(summary_response["E1R"] + summary_response["E2R"])+'</td>\
                     <td>'+(total_itr1_resolved + total_itr2_resolved)+'</td>\
+                    </tr>\
+                    <tr>\
+                    <td>'+(summary_response["A1IP"] + summary_response["A2IP"])+'</td>\
+                    <td>'+(summary_response["B1IP"] + summary_response["B2IP"])+'</td>\
+                    <td>'+(summary_response["C1IP"] + summary_response["C2IP"])+'</td>\
+                    <td>'+(summary_response["D1IP"] + summary_response["D2IP"])+'</td>\
+                    <td>'+(summary_response["E1IP"] + summary_response["E2IP"])+'</td>\
+                    <td>'+(total_itr1_inprogress + total_itr2_inprogress)+'</td>\
                     </tr>\
                     </table>\
                 <td>\

@@ -92,6 +92,11 @@ def summary_dict(list_def1, list_def2):
     itr2_a_resolved, itr2_b_resolved, itr2_c_resolved, itr2_d_resolved, \
         itr2_e_resolved = 0, 0, 0, 0, 0
 
+    itr1_a_in_progs, itr1_b_in_progs, itr1_c_in_progs, itr1_d_in_progs, \
+        itr1_e_in_progs = 0, 0, 0, 0, 0
+    itr2_a_in_progs, itr2_b_in_progs, itr2_c_in_progs, itr2_d_in_progs, \
+        itr2_e_in_progs = 0, 0, 0, 0, 0
+
     itr1_summary_dict = {}
     print list_def1
     print list_def2
@@ -124,6 +129,17 @@ def summary_dict(list_def1, list_def2):
     itr1_e_resolved, itr2_e_resolved = list_def1.count('E$Resolved'), \
         list_def2.count('E$Resolved')
 
+    itr1_a_in_progs, itr2_a_in_progs = list_def1.count('A$In Progress'), \
+        list_def2.count('A$In Progress')
+    itr1_b_in_progs, itr2_b_in_progs = list_def1.count('B$In Progress'), \
+        list_def2.count('B$In Progress')
+    itr1_c_in_progs, itr2_c_in_progs = list_def1.count('C$In Progress'), \
+        list_def2.count('C$In Progress')
+    itr1_d_in_progs, itr2_d_in_progs = list_def1.count('D$In Progress'), \
+        list_def2.count('D$In Progress')
+    itr1_e_in_progs, itr2_e_in_progs = list_def1.count('E$In Progress'), \
+        list_def2.count('E$In Progress')
+
     itr1_summary_dict = dict(A1=itr1_a_issues, B1=itr1_b_issues,
         C1=itr1_c_issues, D1=itr1_d_issues, E1=itr1_e_issues,
         A2=itr2_a_issues, B2=itr2_b_issues, C2=itr2_c_issues,
@@ -134,7 +150,10 @@ def summary_dict(list_def1, list_def2):
         A1R=itr1_a_resolved, B1R=itr1_b_resolved, C1R=itr1_c_resolved,
         D1R=itr1_d_resolved, E1R=itr1_e_resolved, A2R=itr2_a_resolved,
         B2R=itr2_b_resolved, C2R=itr2_c_resolved, D2R=itr2_d_resolved,
-        E2R=itr2_e_resolved)
+        E2R=itr2_e_resolved, A1IP=itr1_a_in_progs, B1IP=itr1_b_in_progs,
+        C1IP=itr1_c_in_progs, D1IP=itr1_d_in_progs, E1IP=itr1_e_in_progs,
+        A2IP=itr2_a_in_progs, B2IP=itr2_b_in_progs, C2IP=itr2_c_in_progs,
+        D2IP=itr2_d_in_progs, E2IP=itr2_e_in_progs)
     return jsonify(itr1_summary_dict)
 
 
