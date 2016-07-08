@@ -73,7 +73,7 @@ def project_issues(project_key, num):
     return issue_data
 
 
-def summary_dict(list_def1, list_def2):
+def summary_dict(list_def1, list_def2, total_issues_list):
     """ This function will convert the issue count into a dict """
     global itr1_summary_dict
 
@@ -108,6 +108,7 @@ def summary_dict(list_def1, list_def2):
         itr2_e_open = 0, 0, 0, 0, 0
 
     itr1_summary_dict = {}
+    print total_issues_list
 
     itr1_a_issues, itr2_a_issues = list_def1.count('A'), list_def2.count('A')
     itr1_b_issues, itr2_b_issues = list_def1.count('B'), list_def2.count('B')
@@ -197,9 +198,10 @@ def summary_dict(list_def1, list_def2):
 def project_dashboard(project_key):
     # declare arrays to store the number of a , b, c, d, e issues
     global itr1_issues, itr2_issues
-
+    total_itr_issues = []  # get the total issues in a list
     itr1_issues, itr2_issues = [], []
-
+    status_dict = {'Total': 'TO', 'Closed': 'CL', 'Resolved': 'RL',
+                   'In Progress': 'IP', 'Reopened': 'RO', 'Open': 'OP'}
     jql = ''
     # if the total issue count is less than 50 for a project don't request
     # again to the server. if more than 50 request the server
@@ -219,50 +221,60 @@ def project_dashboard(project_key):
             if itr_round.lower() == 'itr1':
                 if issue_type.lower() == 'a':
                     itr1_issues.append('A')
-                    itr1_issues.append('A$'+issue['key'])
+                    total_itr_issues.append('1#A$'+status_dict[issue_status]+
+                                       '|'+issue['key'])
                     itr1_issues.append('A$'+issue_status)
                 if issue_type.lower() == 'b':
                     itr1_issues.append('B')
-                    itr1_issues.append('B$'+issue['key'])
+                    total_itr_issues.append('1#B$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr1_issues.append('B$'+issue_status)
                 if issue_type.lower() == 'c':
                     itr1_issues.append('C')
-                    itr1_issues.append('C$'+issue['key'])
+                    total_itr_issues.append('1#C$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr1_issues.append('C$'+issue_status)
                 if issue_type.lower() == 'd':
                     itr1_issues.append('D')
-                    itr1_issues.append('D$'+issue['key'])
+                    total_itr_issues.append('1#D$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr1_issues.append('D$'+issue_status)
                 if issue_type.lower() == 'e':
                     itr1_issues.append('E')
-                    itr1_issues.append('E$'+issue['key'])
+                    total_itr_issues.append('1#E$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr1_issues.append('E$'+issue_status)
 
             if itr_round.lower() == 'itr2':
                 if issue_type.lower() == 'a':
                     itr2_issues.append('A')
-                    itr2_issues.append('A$'+issue['key'])
+                    total_itr_issues.append('2#A$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr2_issues.append('A$'+issue_status)
                 if issue_type.lower() == 'b':
                     itr2_issues.append('B')
-                    itr2_issues.append('B$'+issue['key'])
+                    total_itr_issues.append('2#B$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr2_issues.append('B$'+issue_status)
                 if issue_type.lower() == 'c':
                     itr2_issues.append('C')
-                    itr2_issues.append('C$'+issue['key'])
+                    total_itr_issues.append('2#C$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr2_issues.append('C$'+issue_status)
                 if issue_type.lower() == 'd':
                     itr2_issues.append('D')
-                    itr2_issues.append('D$'+issue['key'])
+                    total_itr_issues.append('2#D$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr2_issues.append('D$'+issue_status)
                 if issue_type.lower() == 'e':
                     itr2_issues.append('E')
-                    itr2_issues.append('E$'+issue['key'])
+                    total_itr_issues.append('2#E$'+status_dict[issue_status]
+                                       +'|'+issue['key'])
                     itr2_issues.append('E$'+issue_status)
         except Exception as e:
             print "Error Occurred ", e
 
-    summary_response = summary_dict(itr1_issues, itr2_issues)
+    summary_response = summary_dict(itr1_issues, itr2_issues,total_itr_issues)
     return summary_response
 
 
