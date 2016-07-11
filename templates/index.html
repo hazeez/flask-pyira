@@ -3,24 +3,24 @@
 
 {% block navbar %}
 <nav class="navbar navbar-default">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-	      PYIRA
+      <a class="navbar-brand" id="logo" href="#">
+	      JIRA Client.
       </a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">{{ session['username'] }}</a></li>
-        <li><a href="{{ url_for('logout') }}"> Logout </a></li>
+        <li class="navbar-link"><a href="#">{{ session['username'] }}</a></li>
+        <li class="navbar-link"><a href="{{ url_for('logout') }}"> Logout </a></li>
     </ul>
     </div>
 </nav>
 {% endblock navbar %}
 
 {% block content %}
-            <div class="container col-md-2">
+            <div class="container col-md-2" id="project-container">
                 {% set count = 1 %}
-                <div id="project-title" class="panel panel-default">Projects </div>
+                <div id="project-title">Projects </div>
                 <div id="project-group">
                         <div id="project-list"> 
                             {% for project in project_data %}
@@ -34,8 +34,8 @@
                         </div>
                 </div>
             </div>
-                <div class="container col-md-2">
-                    <div id="issue-title" class="panel panel-default">Issues</div>
+                <div class="container col-md-2" id="issue-container">
+                    <div id="issue-title">Issues</div>
                     <div id="issue-group">
                             <div id="issue-list"></div>
                     </div>

@@ -1,39 +1,23 @@
 {% extends "base.html" %}
 
 {% block navbar %}
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-	      PYIRA
-      </a>
-    </div>
-  </div>
-</nav>
 {% endblock navbar %}
 
 {% block content %}
 <form role="form" method="post" action="" name="login">
 <div class="container" id="login">
     {{ form.hidden_tag() }}
-    <h1>Sign In:</h1><br/>
-    <p>
-    Enter your JIRA user name: <br>
-    {{ form.username(size=80, class="form-control") }}<br>
+    <h1 id="logo">JIRA Client.</h1><br/>
+    {{ form.username(size=80, class="form-control", placeholder="JIRA User Name") }}
     {% for error in form.username.errors %}
             <span style="color: red;">{{ error }}</span>
-          {% endfor %}<br>
-    </p>
-
-    <p>
-    Enter your JIRA password: <br>
-    {{ form.password(size=80, class="form-control") }}<br>
+          {% endfor %}
+    {{ form.password(size=80, class="form-control", placeholder="JIRA Password") }}
     {% for error in form.password.errors %}
             <span style="color: red;">{{ error }}</span>
-          {% endfor %}<br>
-    </p>
+          {% endfor %}
 
-<button type="submit" class="btn btn-primary" id="btn-login">Login</button>
+<button type="submit" class="btn btn-primary btn-block" id="btn-login">Login</button>
 </div>
 </form>
 

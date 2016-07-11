@@ -1,17 +1,45 @@
 body.base{
     font-size:12px;
-}
+/*    font-family: 'Roboto', sans-serif;
+*/}
 #login{
-max-width: 350px;
-margin-left:40%;
-margin-top: 10%;
+    max-width: 350px;
+    margin-left:40%;
+    margin-top: 15%;
 }
 #btn-login{
-    margin-left: 35%;
+    margin-top: 15px;
+    display: block;
+    height: 3em;
+   -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; 
+    background: #FE4365;
+    color: #FFFFFF;
+    border: 3px solid #FE4365;
+}
+#logo{
+    font-family: 'Suez One', serif;
+}
+a#logo.navbar-brand{
+    color: whitesmoke;
+}
+input#username.form-control, input#password.form-control{
+    height: 3em;
+    padding-top: 10px, 0,10px, 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
 }
 .flash-messages{
     max-width: 400px;
     margin-left: 30%;
+}
+nav.navbar.navbar-default{
+    margin-bottom: 0px;
+    background: #0B486B;
+    border-radius: 0px;
 }
 ol, ul, li {
     list-style: none;
@@ -20,23 +48,64 @@ ol, ul, li {
     width: 200px;
 }
 #project-group, #issue-group{
-    width:200px;
     position: relative;
     overflow-y: auto;
     height: 800px;
     overflow-x: hidden;
     border-right: 1px solid #E5E5E5;
 }
-#project-list{
+#project-list {
     float:left;
     position: relative;
+}
+#issue-container{
 }
 a.project{
     position:relative;
     z-index: 99999;
 }
+a.issue, a.project{
+    font-style: underline;
+    padding-left: 15px;
+}
+a.project:hover, a.issue:hover{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+a.project:active{
+    color: red;
+}
 div#dashboard-summary{
     margin-top: 20px;
+}
+#issue-title, #project-title{
+    margin-bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 10px 10px 15px;
+    border: none;
+    border-bottom: 2px solid; 
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    font-size: 14px;
+}
+#project-dashboard-link{
+   -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    padding: 7px 10px 7px 10px;
+    float: right;
+    background: #FE4365;
+    border-radius: 2px;
+    color: #FFFFFF;
+    border: 3px solid #FE4365;
+    margin-top: 10px;
+}
+#issue-title, #project-title, #project-dashboard-link, #btn-login{
+    font-family: 'Suez One', sans-serif;
+    font-size: 15px;
 }
 th#total-issues-table-row{
     border-top: none;
@@ -92,4 +161,9 @@ body.loading {
    modal element will be visible */
 body.loading .modal {
     display: block;
+}
+li.navbar-link{
+    background: #FCF8E3;
+    font-family: 'Suez One', sans-serif;
+    font-size:13px;
 }

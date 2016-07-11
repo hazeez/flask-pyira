@@ -79,6 +79,14 @@ $(document).ready(function() {
         return false; //for good measure
     });
 
+    // this function creates hyperlink based on the issue count
+    function table_data_issue(issue_count, itr_round, status, type){
+        if (issue_count == 0){
+            return issue_count
+        }else{
+            return '<a href=/index/dashboard/issuesummary/'+ type +'$'+ itr_round +'&'+ status + '>'+issue_count +'</a>'
+        } 
+    };
 
     // function to generate dashboard via ajax
     $('a#project-dashboard-link').click(function(event){
@@ -145,47 +153,47 @@ $(document).ready(function() {
                     </tr>\
                     <tr class="highlight-row">\
                         <td><strong>Closed</strong></td>\
-                        <td>'+summary_response["A1C"]+'</td>\
-                        <td>'+summary_response["B1C"]+'</td>\
-                        <td>'+summary_response["C1C"]+'</td>\
-                        <td>'+summary_response["D1C"]+'</td>\
-                        <td>'+summary_response["E1C"]+'</td>\
+                        <td>'+table_data_issue(summary_response["A1C"],1,'CL','A')+'</td>\
+                        <td>'+table_data_issue(summary_response["B1C"],1,'CL','B')+'</td>\
+                        <td>'+table_data_issue(summary_response["C1C"],1,'CL','C')+'</td>\
+                        <td>'+table_data_issue(summary_response["D1C"],1,'CL','D')+'</td>\
+                        <td>'+table_data_issue(summary_response["E1C"],1,'CL','E')+'</td>\
                         <td>'+total_itr1_closed+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
                         <td><strong>Resolved</strong></td>\
-                        <td>'+summary_response["A1R"]+'</td>\
-                        <td>'+summary_response["B1R"]+'</td>\
-                        <td>'+summary_response["C1R"]+'</td>\
-                        <td>'+summary_response["D1R"]+'</td>\
-                        <td>'+summary_response["E1R"]+'</td>\
+                        <td>'+table_data_issue(summary_response["A1R"],1,'RL','A')+'</td>\
+                        <td>'+table_data_issue(summary_response["B1R"],1,'RL','B')+'</td>\
+                        <td>'+table_data_issue(summary_response["C1R"],1,'RL','C')+'</td>\
+                        <td>'+table_data_issue(summary_response["D1R"],1,'RL','D')+'</td>\
+                        <td>'+table_data_issue(summary_response["E1R"],1,'RL','E')+'</td>\
                         <td>'+total_itr1_resolved+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
                         <td><strong>InProgress</strong></td>\
-                        <td>'+summary_response["A1IP"]+'</td>\
-                        <td>'+summary_response["B1IP"]+'</td>\
-                        <td>'+summary_response["C1IP"]+'</td>\
-                        <td>'+summary_response["D1IP"]+'</td>\
-                        <td>'+summary_response["E1IP"]+'</td>\
+                        <td>'+table_data_issue(summary_response["A1IP"],1,'IP','A')+'</td>\
+                        <td>'+table_data_issue(summary_response["B1IP"],1,'IP','B')+'</td>\
+                        <td>'+table_data_issue(summary_response["C1IP"],1,'IP','C')+'</td>\
+                        <td>'+table_data_issue(summary_response["D1IP"],1,'IP','D')+'</td>\
+                        <td>'+table_data_issue(summary_response["E1IP"],1,'IP','E')+'</td>\
                         <td>'+total_itr1_inprogress+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
                         <td><strong>ReOpened</strong></td>\
-                        <td>'+summary_response["A1RO"]+'</td>\
-                        <td>'+summary_response["B1RO"]+'</td>\
-                        <td>'+summary_response["C1RO"]+'</td>\
-                        <td>'+summary_response["D1RO"]+'</td>\
-                        <td>'+summary_response["E1RO"]+'</td>\
+                        <td>'+table_data_issue(summary_response["A1RO"],1,'RO','A')+'</td>\
+                        <td>'+table_data_issue(summary_response["B1RO"],1,'RO','B')+'</td>\
+                        <td>'+table_data_issue(summary_response["C1RO"],1,'RO','C')+'</td>\
+                        <td>'+table_data_issue(summary_response["D1RO"],1,'RO','D')+'</td>\
+                        <td>'+table_data_issue(summary_response["E1RO"],1,'RO','E')+'</td>\
                         <td>'+total_itr1_reopened+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
                         <td><strong>Open</strong></td>\
-                        <td>'+summary_response["A1O"]+'</td>\
-                        <td>'+summary_response["B1O"]+'</td>\
-                        <td>'+summary_response["C1O"]+'</td>\
-                        <td>'+summary_response["D1O"]+'</td>\
-                        <td>'+summary_response["E1O"]+'</td>\
+                        <td>'+table_data_issue(summary_response["A1O"],1,'OP','A')+'</td>\
+                        <td>'+table_data_issue(summary_response["B1O"],1,'OP','B')+'</td>\
+                        <td>'+table_data_issue(summary_response["C1O"],1,'OP','C')+'</td>\
+                        <td>'+table_data_issue(summary_response["D1O"],1,'OP','D')+'</td>\
+                        <td>'+table_data_issue(summary_response["E1O"],1,'OP','E')+'</td>\
                         <td>'+total_itr1_opened+'</td>\
                     </tr>\
                     </table>\
@@ -211,42 +219,42 @@ $(document).ready(function() {
                     <td>'+total_itr2_issues+'</td>\
                     </tr>\
                     <tr class="highlight-row">\
-                    <td>'+summary_response["A2C"]+'</td>\
-                    <td>'+summary_response["B2C"]+'</td>\
-                    <td>'+summary_response["C2C"]+'</td>\
-                    <td>'+summary_response["D2C"]+'</td>\
-                    <td>'+summary_response["E2C"]+'</td>\
+                    <td>'+table_data_issue(summary_response["A2C"],2,'CL','A')+'</td>\
+                    <td>'+table_data_issue(summary_response["B2C"],2,'CL','B')+'</td>\
+                    <td>'+table_data_issue(summary_response["C2C"],2,'CL','C')+'</td>\
+                    <td>'+table_data_issue(summary_response["D2C"],2,'CL','D')+'</td>\
+                    <td>'+table_data_issue(summary_response["E2C"],2,'CL','E')+'</td>\
                     <td>'+total_itr2_closed+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>'+summary_response["A2R"]+'</td>\
-                    <td>'+summary_response["B2R"]+'</td>\
-                    <td>'+summary_response["C2R"]+'</td>\
-                    <td>'+summary_response["D2R"]+'</td>\
-                    <td>'+summary_response["E2R"]+'</td>\
+                    <td>'+table_data_issue(summary_response["A2R"],2,'RL','A')+'</td>\
+                    <td>'+table_data_issue(summary_response["B2R"],2,'RL','B')+'</td>\
+                    <td>'+table_data_issue(summary_response["C2R"],2,'RL','C')+'</td>\
+                    <td>'+table_data_issue(summary_response["D2R"],2,'RL','D')+'</td>\
+                    <td>'+table_data_issue(summary_response["E2R"],2,'RL','E')+'</td>\
                     <td>'+total_itr2_resolved+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>'+summary_response["A2IP"]+'</td>\
-                    <td>'+summary_response["B2IP"]+'</td>\
-                    <td>'+summary_response["C2IP"]+'</td>\
-                    <td>'+summary_response["D2IP"]+'</td>\
-                    <td>'+summary_response["E2IP"]+'</td>\
+                    <td>'+table_data_issue(summary_response["A2IP"],2,'IP','A')+'</td>\
+                    <td>'+table_data_issue(summary_response["B2IP"],2,'IP','B')+'</td>\
+                    <td>'+table_data_issue(summary_response["C2IP"],2,'IP','C')+'</td>\
+                    <td>'+table_data_issue(summary_response["D2IP"],2,'IP','D')+'</td>\
+                    <td>'+table_data_issue(summary_response["E2IP"],2,'IP','E')+'</td>\
                     <td>'+total_itr2_inprogress+'</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>'+summary_response["A2RO"]+'</td>\
-                    <td>'+summary_response["B2RO"]+'</td>\
-                    <td>'+summary_response["C2RO"]+'</td>\
-                    <td>'+summary_response["D2RO"]+'</td>\
-                    <td>'+summary_response["E2RO"]+'</td>\
+                    <td>'+table_data_issue(summary_response["A2RO"],2,'RO','A')+'</td>\
+                    <td>'+table_data_issue(summary_response["B2RO"],2,'RO','B')+'</td>\
+                    <td>'+table_data_issue(summary_response["C2RO"],2,'RO','C')+'</td>\
+                    <td>'+table_data_issue(summary_response["D2RO"],2,'RO','D')+'</td>\
+                    <td>'+table_data_issue(summary_response["E2RO"],2,'RO','E')+'</td>\
                     <td>'+total_itr2_reopened+'</td>\
                     <tr class="highlight-row-sub">\
-                    <td>'+summary_response["A2O"]+'</td>\
-                    <td>'+summary_response["B2O"]+'</td>\
-                    <td>'+summary_response["C2O"]+'</td>\
-                    <td>'+summary_response["D2O"]+'</td>\
-                    <td>'+summary_response["E2O"]+'</td>\
+                    <td>'+table_data_issue(summary_response["A2O"],2,'OP','A')+'</td>\
+                    <td>'+table_data_issue(summary_response["B2O"],2,'OP','B')+'</td>\
+                    <td>'+table_data_issue(summary_response["C2O"],2,'OP','C')+'</td>\
+                    <td>'+table_data_issue(summary_response["D2O"],2,'OP','D')+'</td>\
+                    <td>'+table_data_issue(summary_response["E2O"],2,'OP','E')+'</td>\
                     <td>'+total_itr2_opened+'</td>\
                     </tr>\
                     </tr>\
