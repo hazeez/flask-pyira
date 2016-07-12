@@ -23,6 +23,7 @@ body.base{
 }
 a#logo.navbar-brand{
     color: whitesmoke;
+    padding-left: 20px;
 }
 input#username.form-control, input#password.form-control{
     height: 3em;
@@ -44,24 +45,49 @@ nav.navbar.navbar-default{
 ol, ul, li {
     list-style: none;
 }
+#project-container, #issue-container{
+    background: #FCF8E3;
+    padding-right: 0px;
+    margin-left: -15px;
+}
+#issue-container{
+    margin-left: 0px;
+    background: #F5F6FA;
+    padding-left: 0px;
+}
 #project-title, #issue-title{
     width: 200px;
+}
+div#project-title, div#issue-title{
+    margin-bottom: 0px;
 }
 #project-group, #issue-group{
     position: relative;
     overflow-y: auto;
-    height: 800px;
+    height: 825px;
     overflow-x: hidden;
     border-right: 1px solid #E5E5E5;
+    padding-right: 0px;
 }
 #project-list {
     float:left;
     position: relative;
+    width: 100%;
+}
+.list-group{
+    width: 100%;
 }
 a.project.list-group-item, a.issue.list-group-item{
     border-top: 0px;
     border-bottom: 0px;
     border-radius: 0px;
+    border-right: none; 
+    border-left: none;
+    background: #FCF8E3;
+    padding-left: 20px;
+}
+a.issue.list-group-item{
+    background: #F5F6FA;
 }
 a.project.list-group-item:first-child, a.issue.list-group-item:first-child{
     border-top: 1px solid #DDDDDD;
@@ -70,13 +96,11 @@ a.project.list-group-item:first-child, a.issue.list-group-item:first-child{
     border-bottom: 1px solid #DDDDDD;
 }
 */a.project.list-group-item.active, a.issue.list-group-item.active{
-    background: #FCF8E3;
-    color: #555;
+    background: #0B486B;
+    color: #FFF;
     font-weight: bold;
     border: 0px;
     border: 1px solid #DDDDDD;
-}
-#issue-container{
 }
 a.project{
     position:relative;
@@ -97,10 +121,9 @@ div#dashboard-summary{
     margin-top: 20px;
 }
 #issue-title, #project-title{
-    margin-bottom: 20px;
     width: 100%;
     overflow: hidden;
-    padding: 10px 10px 10px 15px;
+    padding: 10px 10px 10px 20px;
     border: none;
     border-bottom: 2px solid; 
     -webkit-border-radius: 0px;
