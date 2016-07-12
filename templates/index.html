@@ -22,10 +22,10 @@
                 {% set count = 1 %}
                 <div id="project-title">Projects </div>
                 <div id="project-group">
-                        <div id="project-list"> 
+                        <div id="project-list" class="list-group"> 
                             {% for project in project_data %}
                                 <li> 
-                                    <a class="project" data-project-key="{{ project.key }}" href="/index/{{
+                                    <a class="project list-group-item" data-project-key="{{ project.key }}" href="/index/{{
                                         project.key }}/1">{{
                                         project.key }}</a>
                                 </li>
@@ -37,7 +37,7 @@
                 <div class="container col-md-2" id="issue-container">
                     <div id="issue-title">Issues</div>
                     <div id="issue-group">
-                            <div id="issue-list"></div>
+                            <div id="issue-list" class="list-group"></div>
                     </div>
                 </div>
                 <div class="container col-md-8">

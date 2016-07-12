@@ -58,6 +58,24 @@ ol, ul, li {
     float:left;
     position: relative;
 }
+a.project.list-group-item, a.issue.list-group-item{
+    border-top: 0px;
+    border-bottom: 0px;
+    border-radius: 0px;
+}
+a.project.list-group-item:first-child, a.issue.list-group-item:first-child{
+    border-top: 1px solid #DDDDDD;
+}
+/*a.project.list-group-item:last-child, .list-group-item:last-child, a.issue.list-group-item:last-child{
+    border-bottom: 1px solid #DDDDDD;
+}
+*/a.project.list-group-item.active, a.issue.list-group-item.active{
+    background: #FCF8E3;
+    color: #555;
+    font-weight: bold;
+    border: 0px;
+    border: 1px solid #DDDDDD;
+}
 #issue-container{
 }
 a.project{
@@ -69,8 +87,6 @@ a.issue, a.project{
     padding-left: 15px;
 }
 a.project:hover, a.issue:hover{
-    padding-top: 5px;
-    padding-bottom: 5px;
     text-decoration: underline;
     font-weight: bold;
 }
@@ -131,6 +147,9 @@ th#total-issues-table-row{
 }
 .highlight-row-sub{
     background: #FCF8E3;
+}
+.zero{
+    color: #999;
 }
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window

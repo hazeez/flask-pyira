@@ -13,6 +13,8 @@ $(document).ready(function() {
     var project_name = '';
     $('#project-dashboard-link').hide();
     $('a.project').click(function(event) {
+        $("a.project.list-group-item.active").removeClass("active"); 
+        $(this).addClass('active');
         event.preventDefault();
         var totalpages = 0;
         $.ajax({
@@ -46,7 +48,7 @@ $(document).ready(function() {
 
                 for (var key in issuedata.issues) {
                     var issueid = issuedata.issues[key].key;
-                    $('#issue-list').append("<li><a class='issue' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
+                    $('#issue-list').append("<li><a class='issue list-group-item' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
                 }
 
                 // if more than one page then execute the following code
@@ -68,7 +70,7 @@ $(document).ready(function() {
                                 $('#issue-list').html('');
                                 for (var key in nextissuedata.issues) {
                                     var issueid = nextissuedata.issues[key].key;
-                                    $('#issue-list').append("<li><a class='issue' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
+                                    $('#issue-list').append("<li><a class='issue list-group-item' data-issue-key=" + issueid + " href=/index/issue/" + issueid + ">" + issueid + "</a></li>");
                                 }
                             }
                         }); // ajax function ends here
@@ -82,9 +84,9 @@ $(document).ready(function() {
     // this function creates hyperlink based on the issue count
     function table_data_issue(issue_count, itr_round, status, type){
         if (issue_count == 0){
-            return issue_count
+            return '<span class=zero>' + issue_count + '</span>'
         }else{
-            return '<a href=/index/dashboard/issuesummary/'+ type +'$'+ itr_round +'&'+ status + '>'+issue_count +'</a>'
+            return '<a class="dashboard-issue-link" href=/index/dashboard/issuesummary/'+ type +'$'+ itr_round +'&'+ status + '>'+issue_count +'</a>'
         } 
     };
 
@@ -329,5 +331,6 @@ $(document).ready(function() {
 
     });
 
-});
 
+
+}); // document ready function closed here

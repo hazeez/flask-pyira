@@ -295,7 +295,8 @@ def issue_summary(issue_summary_key):
     for key, value in issue_dict.iteritems():
         if (str(key).split('|')[0] == issue_summary_key):
             issue_subset_dict[key] = value
-    return jsonify(issue_subset_dict)
+    json_issue_subset = jsonify(issue_subset_dict)
+    return json_issue_subset
 
 
 @app.route("/logout")
