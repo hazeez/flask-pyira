@@ -28,17 +28,17 @@ $(document).on('click', 'a.dashboard-issue-link', function(event) {
         url: $(this).attr('href'),
         success: function(list_of_issues) {
             // clear the div element first
-            $("ul.nav.nav-pills li").removeClass("active");
+            $("ul.nav.nav-tabs li").removeClass("active");
             //add logic here - if the nav pill has been already added to the DOM then don't add it again, instead maake the corresponding nav pill active
             var divInDOM = $("div#issue-detail").find("div[id='" + issueTitleKey + "']");
             if (divInDOM.length != 0) {
                 console.log(issueTitleKey);
-                $("ul.nav.nav-pills li").removeClass("active");
+                $("ul.nav.nav-tabs li").removeClass("active");
                 $("[nav-key='"+ issueTitleKey +"']").addClass("active");
                 $('#issue-listing div').removeClass('active');
                 $("div[id='" + issueTitleKey + "']").addClass("active");
             } else {
-                $('ul.nav.nav-pills').append('<li class=active nav-key=' + issueTitleKey + '> <a data-toggle=tab href=#' + issueTitleKey + '>' + issueTitleKey + '</a></li>')
+                $('ul.nav.nav-tabs').append('<li class=active nav-key=' + issueTitleKey + '> <a data-toggle=tab href=#' + issueTitleKey + '>' + issueTitleKey + '</a></li>')
                 $('#issue-listing div').removeClass('active');
                 $('#issue-listing').append("<div id='" + issueTitleKey + "' class='tab-pane fade in active'></div>");
 
@@ -53,8 +53,8 @@ $(document).on('click', 'a.dashboard-issue-link', function(event) {
     return false;
 });
 
-$(document).on('click', 'ul.nav.nav-pills li', function(event) {
-    $("ul.nav.nav-pills li").removeClass("active");
+$(document).on('click', 'ul.nav.nav-tabs li', function(event) {
+    $("ul.nav.nav-tabs li").removeClass("active");
     $(this).addClass("active");
     // find the href of the nav pill and add the active class
     var hrefDiv = $(this).find("a").attr('href');
