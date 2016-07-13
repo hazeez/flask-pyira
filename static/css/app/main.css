@@ -52,7 +52,7 @@ ol, ul, li {
 }
 #issue-container{
     margin-left: 0px;
-    background: #F5F6FA;
+    background: #F4F4F4;
     padding-left: 0px;
 }
 #project-title, #issue-title{
@@ -61,13 +61,21 @@ ol, ul, li {
 div#project-title, div#issue-title{
     margin-bottom: 0px;
 }
-#project-group, #issue-group{
+#project-group, #issue-group, #issue-listing{
     position: relative;
     overflow-y: auto;
     height: 825px;
     overflow-x: hidden;
     border-right: 1px solid #E5E5E5;
     padding-right: 0px;
+}
+#issue-listing{
+    height: 400px;
+    margin-top: 10px;
+    border-left: 1px solid #E5E5E5;
+}
+#issue-detail{
+    margin-top:-5px;
 }
 #project-list {
     float:left;
@@ -77,7 +85,7 @@ div#project-title, div#issue-title{
 .list-group{
     width: 100%;
 }
-a.project.list-group-item, a.issue.list-group-item{
+a.project.list-group-item, a.issue.list-group-item, a.issue-detail.list-group-item{
     border-top: 0px;
     border-bottom: 0px;
     border-radius: 0px;
@@ -87,15 +95,18 @@ a.project.list-group-item, a.issue.list-group-item{
     padding-left: 20px;
 }
 a.issue.list-group-item{
-    background: #F5F6FA;
+    background: #F4F4F4;
 }
-a.project.list-group-item:first-child, a.issue.list-group-item:first-child{
+a.issue-detail.list-group-item{
+    background: #F8F8FF;
+}
+a.project.list-group-item:first-child, a.issue.list-group-item:first-child, a.issue-detail.list-group-item:first-child{
     border-top: 1px solid #DDDDDD;
 }
 /*a.project.list-group-item:last-child, .list-group-item:last-child, a.issue.list-group-item:last-child{
     border-bottom: 1px solid #DDDDDD;
 }
-*/a.project.list-group-item.active, a.issue.list-group-item.active{
+*/a.project.list-group-item.active, a.issue.list-group-item.active, a.issue-detail.list-group-item.active{
     background: #0B486B;
     color: #FFF;
     font-weight: bold;
@@ -110,15 +121,12 @@ a.issue, a.project{
     font-style: underline;
     padding-left: 15px;
 }
-a.project:hover, a.issue:hover{
+a.project:hover, a.issue:hover, a.issue-detail:hover{
     text-decoration: underline;
     font-weight: bold;
 }
-a.project:active{
-    color: red;
-}
 div#dashboard-summary{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 #issue-title, #project-title{
     width: 100%;
@@ -142,6 +150,15 @@ div#dashboard-summary{
     border: 3px solid #FE4365;
     margin-top: 10px;
 }
+td{
+    text-align: center;
+}
+td.description{
+    text-align: left;
+}
+td.selected{
+    background: #DDDDDD;
+}
 #issue-title, #project-title, #project-dashboard-link, #btn-login{
     font-family: 'Suez One', sans-serif;
     font-size: 15px;
@@ -155,6 +172,7 @@ th#total-issues-table-row{
 #total-issues-summary-table{
     border: None;
     font-size:11px;
+    margin-bottom: 0px;
 }
 #table-itr1{
     background: #E3E5E5;
@@ -166,8 +184,11 @@ th#total-issues-table-row{
     background: #DAE3E5;
 }
 .highlight-row{
-    background: #FFFFE0;
+/*    background: #FFFFE0;
+*/
+border-top: 2px;
 }
+
 .highlight-row-sub{
     background: #FCF8E3;
 }

@@ -13,9 +13,12 @@ $(document).on({
 // adjust the window size every time the browser height changes
 $(window).resize(function() {
     // 93 px is the height of the top bar and the projects title
-    var windowHeight = $(window).height() - 93
+    var windowHeight = $(window).height() - 93;
     $("#project-group").css("height", windowHeight);
     $("#issue-group").css("height", windowHeight);
+    // setting the height of the issue listing div
+    var issueListingDivHeight = windowHeight - 355;
+    $("#issue-listing").css("height", issueListingDivHeight);
 });
 
 
@@ -25,12 +28,20 @@ $(document).ready(function() {
 
     $("#project-group").css("height", windowHeight);
     $("#issue-group").css("height", windowHeight);
+    var issueListingDivHeight = windowHeight - 355;
+    $("#issue-listing").css("height", issueListingDivHeight);
     $('#project-dashboard-link').hide();
+    $('div#issue-listing').hide();
 
     $('a.project').click(function(event) {
+        event.preventDefault();
         $("a.project.list-group-item.active").removeClass("active");
         $(this).addClass('active');
-        event.preventDefault();
+        // clear the html for the current project
+        $('div#dashboard-summary').html('');
+        $('ul.nav.nav-pills').html('');
+        $('div#issue-listing').html('');
+        $('#project-dashboard-link').hide();
         var totalpages = 0;
         $.ajax({
             url: $(this).attr('href'),
@@ -39,8 +50,7 @@ $(document).ready(function() {
                 $('#issue-title').show();
                 $('#issue-group').show();
                 $('#project-dashboard-link').show();
-                $('div#dashboard-summary').html('');
-                $('div#issue-listing').html('');
+                $('div#issue-listing').hide();
                 // get the total issues
                 total_issues = issuedata.total;
                 //if total_issues more than 50 implement pagination
@@ -108,6 +118,8 @@ $(document).ready(function() {
 
     // function to generate dashboard via ajax
     $('a#project-dashboard-link').click(function(event) {
+        $('#issue-listing').html(''); 
+        $('div#issue-listing').hide();
         event.preventDefault();
         $.ajax({
             url: $(this).attr('href'),
@@ -161,7 +173,7 @@ $(document).ready(function() {
                             <td>Total</td> \
                         </tr>\
                     <tr>\
-                        <td><strong>Total</strong></td>\
+                        <td class="description"><strong>Total</strong></td>\
                         <td>' + summary_response["A1"] + '</td>\
                         <td>' + summary_response["B1"] + '</td>\
                         <td>' + summary_response["C1"] + '</td>\
@@ -170,48 +182,48 @@ $(document).ready(function() {
                         <td>' + total_itr1_issues + '</td>\
                     </tr>\
                     <tr class="highlight-row">\
-                        <td><strong>Closed</strong></td>\
-                        <td>' + table_data_issue(summary_response["A1C"], 1, 'CL', 'A') + '</td>\
-                        <td>' + table_data_issue(summary_response["B1C"], 1, 'CL', 'B') + '</td>\
-                        <td>' + table_data_issue(summary_response["C1C"], 1, 'CL', 'C') + '</td>\
-                        <td>' + table_data_issue(summary_response["D1C"], 1, 'CL', 'D') + '</td>\
-                        <td>' + table_data_issue(summary_response["E1C"], 1, 'CL', 'E') + '</td>\
+                        <td class="description"><strong>Closed</strong></td>\
+                        <td data-key=A$1&CL>' + table_data_issue(summary_response["A1C"], 1, 'CL', 'A') + '</td>\
+                        <td data-key=B$1&CL>' + table_data_issue(summary_response["B1C"], 1, 'CL', 'B') + '</td>\
+                        <td data-key=C$1&CL>' + table_data_issue(summary_response["C1C"], 1, 'CL', 'C') + '</td>\
+                        <td data-key=D$1&CL >' + table_data_issue(summary_response["D1C"], 1, 'CL', 'D') + '</td>\
+                        <td data-key=E$1&CL>' + table_data_issue(summary_response["E1C"], 1, 'CL', 'E') + '</td>\
                         <td>' + total_itr1_closed + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td><strong>Resolved</strong></td>\
-                        <td>' + table_data_issue(summary_response["A1R"], 1, 'RL', 'A') + '</td>\
-                        <td>' + table_data_issue(summary_response["B1R"], 1, 'RL', 'B') + '</td>\
-                        <td>' + table_data_issue(summary_response["C1R"], 1, 'RL', 'C') + '</td>\
-                        <td>' + table_data_issue(summary_response["D1R"], 1, 'RL', 'D') + '</td>\
-                        <td>' + table_data_issue(summary_response["E1R"], 1, 'RL', 'E') + '</td>\
+                        <td class="description"><strong>Resolved</strong></td>\
+                        <td data-key=A$1&RL>' + table_data_issue(summary_response["A1R"], 1, 'RL', 'A') + '</td>\
+                        <td data-key=B$1&RL>' + table_data_issue(summary_response["B1R"], 1, 'RL', 'B') + '</td>\
+                        <td data-key=C$1&RL >' + table_data_issue(summary_response["C1R"], 1, 'RL', 'C') + '</td>\
+                        <td data-key=D$1&RL>' + table_data_issue(summary_response["D1R"], 1, 'RL', 'D') + '</td>\
+                        <td data-key=E$1&RL>' + table_data_issue(summary_response["E1R"], 1, 'RL', 'E') + '</td>\
                         <td>' + total_itr1_resolved + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td><strong>InProgress</strong></td>\
-                        <td>' + table_data_issue(summary_response["A1IP"], 1, 'IP', 'A') + '</td>\
-                        <td>' + table_data_issue(summary_response["B1IP"], 1, 'IP', 'B') + '</td>\
-                        <td>' + table_data_issue(summary_response["C1IP"], 1, 'IP', 'C') + '</td>\
-                        <td>' + table_data_issue(summary_response["D1IP"], 1, 'IP', 'D') + '</td>\
-                        <td>' + table_data_issue(summary_response["E1IP"], 1, 'IP', 'E') + '</td>\
+                        <td class="description"><strong>InProgress</strong></td>\
+                        <td data-key=A$1&IP>' + table_data_issue(summary_response["A1IP"], 1, 'IP', 'A') + '</td>\
+                        <td data-key=B$1&IP>' + table_data_issue(summary_response["B1IP"], 1, 'IP', 'B') + '</td>\
+                        <td data-key=C$1&IP>' + table_data_issue(summary_response["C1IP"], 1, 'IP', 'C') + '</td>\
+                        <td data-key=D$1&IP>' + table_data_issue(summary_response["D1IP"], 1, 'IP', 'D') + '</td>\
+                        <td data-key=E$1&IP>' + table_data_issue(summary_response["E1IP"], 1, 'IP', 'E') + '</td>\
                         <td>' + total_itr1_inprogress + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td><strong>ReOpened</strong></td>\
-                        <td>' + table_data_issue(summary_response["A1RO"], 1, 'RO', 'A') + '</td>\
-                        <td>' + table_data_issue(summary_response["B1RO"], 1, 'RO', 'B') + '</td>\
-                        <td>' + table_data_issue(summary_response["C1RO"], 1, 'RO', 'C') + '</td>\
-                        <td>' + table_data_issue(summary_response["D1RO"], 1, 'RO', 'D') + '</td>\
-                        <td>' + table_data_issue(summary_response["E1RO"], 1, 'RO', 'E') + '</td>\
+                        <td class="description"><strong>ReOpened</strong></td>\
+                        <td data-key=A$1&RO>' + table_data_issue(summary_response["A1RO"], 1, 'RO', 'A') + '</td>\
+                        <td data-key=B$1&RO>' + table_data_issue(summary_response["B1RO"], 1, 'RO', 'B') + '</td>\
+                        <td data-key=C$1&RO>' + table_data_issue(summary_response["C1RO"], 1, 'RO', 'C') + '</td>\
+                        <td data-key=D$1&RO>' + table_data_issue(summary_response["D1RO"], 1, 'RO', 'D') + '</td>\
+                        <td data-key=E$1&RO>' + table_data_issue(summary_response["E1RO"], 1, 'RO', 'E') + '</td>\
                         <td>' + total_itr1_reopened + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td><strong>Open</strong></td>\
-                        <td>' + table_data_issue(summary_response["A1O"], 1, 'OP', 'A') + '</td>\
-                        <td>' + table_data_issue(summary_response["B1O"], 1, 'OP', 'B') + '</td>\
-                        <td>' + table_data_issue(summary_response["C1O"], 1, 'OP', 'C') + '</td>\
-                        <td>' + table_data_issue(summary_response["D1O"], 1, 'OP', 'D') + '</td>\
-                        <td>' + table_data_issue(summary_response["E1O"], 1, 'OP', 'E') + '</td>\
+                        <td class="description"><strong>Open</strong></td>\
+                        <td data-key=A$1&OP>' + table_data_issue(summary_response["A1O"], 1, 'OP', 'A') + '</td>\
+                        <td data-key=A$1&OP>' + table_data_issue(summary_response["B1O"], 1, 'OP', 'B') + '</td>\
+                        <td data-key=A$1&OP>' + table_data_issue(summary_response["C1O"], 1, 'OP', 'C') + '</td>\
+                        <td data-key=A$1&OP>' + table_data_issue(summary_response["D1O"], 1, 'OP', 'D') + '</td>\
+                        <td data-key=A$1&OP>' + table_data_issue(summary_response["E1O"], 1, 'OP', 'E') + '</td>\
                         <td>' + total_itr1_opened + '</td>\
                     </tr>\
                     </table>\
@@ -237,42 +249,42 @@ $(document).ready(function() {
                     <td>' + total_itr2_issues + '</td>\
                     </tr>\
                     <tr class="highlight-row">\
-                    <td>' + table_data_issue(summary_response["A2C"], 2, 'CL', 'A') + '</td>\
-                    <td>' + table_data_issue(summary_response["B2C"], 2, 'CL', 'B') + '</td>\
-                    <td>' + table_data_issue(summary_response["C2C"], 2, 'CL', 'C') + '</td>\
-                    <td>' + table_data_issue(summary_response["D2C"], 2, 'CL', 'D') + '</td>\
-                    <td>' + table_data_issue(summary_response["E2C"], 2, 'CL', 'E') + '</td>\
+                    <td data-key=A$2&CL>' + table_data_issue(summary_response["A2C"], 2, 'CL', 'A') + '</td>\
+                    <td data-key=B$2&CL>' + table_data_issue(summary_response["B2C"], 2, 'CL', 'B') + '</td>\
+                    <td data-key=C$2&CL>' + table_data_issue(summary_response["C2C"], 2, 'CL', 'C') + '</td>\
+                    <td data-key=D$2&CL>' + table_data_issue(summary_response["D2C"], 2, 'CL', 'D') + '</td>\
+                    <td data-key=E$2&CL>' + table_data_issue(summary_response["E2C"], 2, 'CL', 'E') + '</td>\
                     <td>' + total_itr2_closed + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>' + table_data_issue(summary_response["A2R"], 2, 'RL', 'A') + '</td>\
-                    <td>' + table_data_issue(summary_response["B2R"], 2, 'RL', 'B') + '</td>\
-                    <td>' + table_data_issue(summary_response["C2R"], 2, 'RL', 'C') + '</td>\
-                    <td>' + table_data_issue(summary_response["D2R"], 2, 'RL', 'D') + '</td>\
-                    <td>' + table_data_issue(summary_response["E2R"], 2, 'RL', 'E') + '</td>\
+                    <td data-key=A$2&RL>' + table_data_issue(summary_response["A2R"], 2, 'RL', 'A') + '</td>\
+                    <td data-key=B$2&RL>' + table_data_issue(summary_response["B2R"], 2, 'RL', 'B') + '</td>\
+                    <td data-key=C$2&RL>' + table_data_issue(summary_response["C2R"], 2, 'RL', 'C') + '</td>\
+                    <td data-key=D$2&RL>' + table_data_issue(summary_response["D2R"], 2, 'RL', 'D') + '</td>\
+                    <td data-key=E$2&RL>' + table_data_issue(summary_response["E2R"], 2, 'RL', 'E') + '</td>\
                     <td>' + total_itr2_resolved + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>' + table_data_issue(summary_response["A2IP"], 2, 'IP', 'A') + '</td>\
-                    <td>' + table_data_issue(summary_response["B2IP"], 2, 'IP', 'B') + '</td>\
-                    <td>' + table_data_issue(summary_response["C2IP"], 2, 'IP', 'C') + '</td>\
-                    <td>' + table_data_issue(summary_response["D2IP"], 2, 'IP', 'D') + '</td>\
-                    <td>' + table_data_issue(summary_response["E2IP"], 2, 'IP', 'E') + '</td>\
+                    <td data-key=A$2&IP>' + table_data_issue(summary_response["A2IP"], 2, 'IP', 'A') + '</td>\
+                    <td data-key=B$2&IP>' + table_data_issue(summary_response["B2IP"], 2, 'IP', 'B') + '</td>\
+                    <td data-key=C$2&IP>' + table_data_issue(summary_response["C2IP"], 2, 'IP', 'C') + '</td>\
+                    <td data-key=D$2&IP>' + table_data_issue(summary_response["D2IP"], 2, 'IP', 'D') + '</td>\
+                    <td data-key=E$2&IP>' + table_data_issue(summary_response["E2IP"], 2, 'IP', 'E') + '</td>\
                     <td>' + total_itr2_inprogress + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                    <td>' + table_data_issue(summary_response["A2RO"], 2, 'RO', 'A') + '</td>\
-                    <td>' + table_data_issue(summary_response["B2RO"], 2, 'RO', 'B') + '</td>\
-                    <td>' + table_data_issue(summary_response["C2RO"], 2, 'RO', 'C') + '</td>\
-                    <td>' + table_data_issue(summary_response["D2RO"], 2, 'RO', 'D') + '</td>\
-                    <td>' + table_data_issue(summary_response["E2RO"], 2, 'RO', 'E') + '</td>\
+                    <td data-key=A$2&RO>' + table_data_issue(summary_response["A2RO"], 2, 'RO', 'A') + '</td>\
+                    <td data-key=B$2&RO>' + table_data_issue(summary_response["B2RO"], 2, 'RO', 'B') + '</td>\
+                    <td data-key=C$2&RO>' + table_data_issue(summary_response["C2RO"], 2, 'RO', 'C') + '</td>\
+                    <td data-key=D$2&RO>' + table_data_issue(summary_response["D2RO"], 2, 'RO', 'D') + '</td>\
+                    <td data-key=E$2&RO>' + table_data_issue(summary_response["E2RO"], 2, 'RO', 'E') + '</td>\
                     <td>' + total_itr2_reopened + '</td>\
                     <tr class="highlight-row-sub">\
-                    <td>' + table_data_issue(summary_response["A2O"], 2, 'OP', 'A') + '</td>\
-                    <td>' + table_data_issue(summary_response["B2O"], 2, 'OP', 'B') + '</td>\
-                    <td>' + table_data_issue(summary_response["C2O"], 2, 'OP', 'C') + '</td>\
-                    <td>' + table_data_issue(summary_response["D2O"], 2, 'OP', 'D') + '</td>\
-                    <td>' + table_data_issue(summary_response["E2O"], 2, 'OP', 'E') + '</td>\
+                    <td data-key=A$2&OP>' + table_data_issue(summary_response["A2O"], 2, 'OP', 'A') + '</td>\
+                    <td data-key=B$2&OP>' + table_data_issue(summary_response["B2O"], 2, 'OP', 'B') + '</td>\
+                    <td data-key=C$2&OP>' + table_data_issue(summary_response["C2O"], 2, 'OP', 'C') + '</td>\
+                    <td data-key=D$2&OP>' + table_data_issue(summary_response["D2O"], 2, 'OP', 'D') + '</td>\
+                    <td data-key=E$2&OP>' + table_data_issue(summary_response["E2O"], 2, 'OP', 'E') + '</td>\
                     <td>' + total_itr2_opened + '</td>\
                     </tr>\
                     </tr>\
