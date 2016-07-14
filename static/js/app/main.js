@@ -17,7 +17,7 @@ $(window).resize(function() {
     $("#project-group").css("height", windowHeight);
     $("#issue-group").css("height", windowHeight);
     // setting the height of the issue listing div
-    var issueListingDivHeight = windowHeight - 355;
+    var issueListingDivHeight = windowHeight - 338;
     $("#issue-listing").css("height", issueListingDivHeight);
 });
 
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     $("#project-group").css("height", windowHeight);
     $("#issue-group").css("height", windowHeight);
-    var issueListingDivHeight = windowHeight - 355;
+    var issueListingDivHeight = windowHeight - 338;
     $("#issue-listing").css("height", issueListingDivHeight);
     $('#project-dashboard-link').hide();
     $('div#issue-listing').hide();
@@ -39,7 +39,8 @@ $(document).ready(function() {
         $(this).addClass('active');
         // clear the html for the current project
         $('div#dashboard-summary').html('');
-        $('ul.nav.nav-pills').html('');
+        $('ul.nav.nav-tabs').html('');
+        $('ul.nav.nav-tabs').hide('');
         $('div#issue-listing').html('');
         $('#project-dashboard-link').hide();
         var totalpages = 0;
@@ -116,10 +117,11 @@ $(document).ready(function() {
         }
     };
 
-    // function to generate dashboard via ajax
+    // function to generate dashboard via ajax when clicking the generate dashboard link
     $('a#project-dashboard-link').click(function(event) {
         $('#issue-listing').html(''); 
         $('div#issue-listing').hide();
+        $("ul.nav.nav-tabs").html('');
         event.preventDefault();
         $.ajax({
             url: $(this).attr('href'),
@@ -159,12 +161,12 @@ $(document).ready(function() {
 
                 $("#dashboard-summary").html('<table class="table col-md-12" id=total-issues-summary-table>\
                <tr>\
-               <td>\
+               <td class="table-top">\
                    <table class="table col-md-4">\
                    <th class=blank-table-header></th>\
-                    <th id="table-itr1" colspan=6>ITR1</th>\
+                    <th id="table-itr1" class="table-heading" colspan=6>ITR1</th>\
                         <tr>\
-                            <td><strong>Issues</strong></td> \
+                            <td class="description"><strong>Issues</strong></td> \
                             <td>A</td> \
                             <td>B</td> \
                             <td>C</td> \
@@ -173,7 +175,7 @@ $(document).ready(function() {
                             <td>Total</td> \
                         </tr>\
                     <tr>\
-                        <td class="description"><strong>Total</strong></td>\
+                        <td class="description"><strong>[TO] Total</strong></td>\
                         <td>' + summary_response["A1"] + '</td>\
                         <td>' + summary_response["B1"] + '</td>\
                         <td>' + summary_response["C1"] + '</td>\
@@ -182,7 +184,7 @@ $(document).ready(function() {
                         <td>' + total_itr1_issues + '</td>\
                     </tr>\
                     <tr class="highlight-row">\
-                        <td class="description"><strong>Closed</strong></td>\
+                        <td class="description"><strong>[CL] Closed</strong></td>\
                         <td data-key=A$1&CL>' + table_data_issue(summary_response["A1C"], 1, 'CL', 'A') + '</td>\
                         <td data-key=B$1&CL>' + table_data_issue(summary_response["B1C"], 1, 'CL', 'B') + '</td>\
                         <td data-key=C$1&CL>' + table_data_issue(summary_response["C1C"], 1, 'CL', 'C') + '</td>\
@@ -191,7 +193,7 @@ $(document).ready(function() {
                         <td>' + total_itr1_closed + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td class="description"><strong>Resolved</strong></td>\
+                        <td class="description"><strong>[RL] Resolved</strong></td>\
                         <td data-key=A$1&RL>' + table_data_issue(summary_response["A1R"], 1, 'RL', 'A') + '</td>\
                         <td data-key=B$1&RL>' + table_data_issue(summary_response["B1R"], 1, 'RL', 'B') + '</td>\
                         <td data-key=C$1&RL >' + table_data_issue(summary_response["C1R"], 1, 'RL', 'C') + '</td>\
@@ -200,7 +202,7 @@ $(document).ready(function() {
                         <td>' + total_itr1_resolved + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td class="description"><strong>InProgress</strong></td>\
+                        <td class="description"><strong>[IP] InProgress</strong></td>\
                         <td data-key=A$1&IP>' + table_data_issue(summary_response["A1IP"], 1, 'IP', 'A') + '</td>\
                         <td data-key=B$1&IP>' + table_data_issue(summary_response["B1IP"], 1, 'IP', 'B') + '</td>\
                         <td data-key=C$1&IP>' + table_data_issue(summary_response["C1IP"], 1, 'IP', 'C') + '</td>\
@@ -209,7 +211,7 @@ $(document).ready(function() {
                         <td>' + total_itr1_inprogress + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td class="description"><strong>ReOpened</strong></td>\
+                        <td class="description"><strong>[RO] ReOpened</strong></td>\
                         <td data-key=A$1&RO>' + table_data_issue(summary_response["A1RO"], 1, 'RO', 'A') + '</td>\
                         <td data-key=B$1&RO>' + table_data_issue(summary_response["B1RO"], 1, 'RO', 'B') + '</td>\
                         <td data-key=C$1&RO>' + table_data_issue(summary_response["C1RO"], 1, 'RO', 'C') + '</td>\
@@ -218,7 +220,7 @@ $(document).ready(function() {
                         <td>' + total_itr1_reopened + '</td>\
                     </tr>\
                     <tr class="highlight-row-sub">\
-                        <td class="description"><strong>Open</strong></td>\
+                        <td class="description"><strong>[OP] Open</strong></td>\
                         <td data-key=A$1&OP>' + table_data_issue(summary_response["A1O"], 1, 'OP', 'A') + '</td>\
                         <td data-key=A$1&OP>' + table_data_issue(summary_response["B1O"], 1, 'OP', 'B') + '</td>\
                         <td data-key=A$1&OP>' + table_data_issue(summary_response["C1O"], 1, 'OP', 'C') + '</td>\
@@ -229,9 +231,9 @@ $(document).ready(function() {
                     </table>\
                     </td>\
                 \
-                    <td>\
+                    <td class="table-top">\
                     <table class="table col-md-4">\
-                    <th id="table-itr2" colspan=6>ITR2</th>\
+                    <th id="table-itr2" class="table-heading" colspan=6>ITR2</th>\
                         <tr>\
                             <td>A</td> \
                             <td>B</td> \
@@ -291,9 +293,9 @@ $(document).ready(function() {
                     </table>\
                     </td>\
                     \
-                    <td>\
+                    <td class="table-top">\
                     <table class="table col-md-4">\
-                    <th id="table-total" colspan=6>Total (ITR1 + ITR2)</th>\
+                    <th id="table-total" class="table-heading" colspan=6>Total (ITR1 + ITR2)</th>\
                         <tr>\
                             <td>A</td> \
                             <td>B</td> \
@@ -351,7 +353,7 @@ $(document).ready(function() {
                     <td>' + (total_itr1_opened + total_itr2_opened) + '</td>\
                     </tr>\
                     </table>\
-                <td>\
+                </td>\
                 </tr>\
                 </table>');
             }

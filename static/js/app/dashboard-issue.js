@@ -3,7 +3,6 @@ $(document).ready(function() {
     $("#issue-detail").hide();
     $("#issue-listing").hide();
     $('#issue-listing').html('');
-
 });
 
 $(document).on('click', 'a.dashboard-issue-link', function(event) {
@@ -27,6 +26,7 @@ $(document).on('click', 'a.dashboard-issue-link', function(event) {
     $.ajax({
         url: $(this).attr('href'),
         success: function(list_of_issues) {
+            $("ul.nav.nav-tabs").show();
             // clear the div element first
             $("ul.nav.nav-tabs li").removeClass("active");
             //add logic here - if the nav pill has been already added to the DOM then don't add it again, instead maake the corresponding nav pill active

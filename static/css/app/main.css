@@ -1,5 +1,5 @@
 body.base{
-    font-size:12px;
+    font-size:11px;
 /*    font-family: 'Roboto', sans-serif;
 */}
 #login{
@@ -139,32 +139,51 @@ div#dashboard-summary{
     border-radius: 0px;
     font-size: 14px;
 }
+#dashboard-body{
+    margin-right: 0px;
+    padding-right: 0px;
+}
 #project-dashboard-link{
    -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     padding: 7px 10px 7px 10px;
     float: right;
     background: #FE4365;
-    border-radius: 2px;
+    border-radius: 4px;
     color: #FFFFFF;
-    border: 3px solid #FE4365;
-    margin-top: 10px;
+/*    border: 3px solid #FE4365;
+*/    margin-top: 10px;
+    margin-right: -6px;
 }
-td{
+td, .table-heading{
     text-align: center;
 }
 td.description{
     text-align: left;
 }
 td.selected{
-    background: #DDDDDD;
+    background: #0B486B;
 }
-#issue-title, #project-title, #project-dashboard-link, #btn-login{
-    font-family: 'Suez One', sans-serif;
-    font-size: 15px;
+td.selected a{
+    color: #FFF;
+}
+#issue-title, #project-title{
+/*    font-family: 'Suez One', sans-serif;
+*/    font-size: 13px;
+    font-weight: bold;
+}
+#project-dashboard-link, #btn-login{
+    font-weight: normal;
+    font-size: 12px;
+}
+#btn-login{
+    font-size: 14px;
 }
 th#total-issues-table-row{
     border-top: none;
+}
+td.table-top{
+    border:0px !important;
 }
 .table>tbody>tr>th.blank-table-header{
     border-top: None;
@@ -173,6 +192,7 @@ th#total-issues-table-row{
     border: None;
     font-size:11px;
     margin-bottom: 0px;
+    margin-top: -8px;
 }
 #table-itr1{
     background: #E3E5E5;
@@ -190,8 +210,8 @@ border-top: 2px;
 }
 
 .highlight-row-sub{
-    background: #FCF8E3;
-}
+/*    background: #FCF8E3;
+*/}
 .zero{
     color: #999;
 }
@@ -227,6 +247,6 @@ body.loading .modal {
 }
 li.navbar-link{
     background: #FCF8E3;
-    font-family: 'Suez One', sans-serif;
-    font-size:13px;
+/*    font-family: 'Suez One', sans-serif;
+*/    font-size:12px;
 }
