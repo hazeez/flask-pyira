@@ -36,6 +36,7 @@ def get_response(jql):
 def index():
     # if the user directly enters /index without authenticating, send him back
     # to login page for authentication
+    project_key_list = []
     try:
         if not username:
             flash('Login Required!')
@@ -48,11 +49,15 @@ def index():
         jql = '/rest/api/2/project'
         response = get_response(jql)
         project_data = response.json()
+        for project in project_data:
+            project_key_list.append(project["key"])
+        # project_data_dict = dict(project_data)
+        # print project_data_dict
     except ValueError:
         flash('Invalid credentials! Try again!')
         return redirect('/login')
     return render_template('index.html',
-                           project_data=project_data)
+                           project_data=project_key_list)
 
 
 @app.route('/index/<project_key>/<int:num>/', methods=['GET', 'POST'])

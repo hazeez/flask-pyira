@@ -21,8 +21,8 @@
             {% for project in project_data %}
             <li>
                 <a class="project list-group-item" data-project-key="{{ project.key }}" href="/index/{{
-                                        project.key }}/1">{{
-                                        project.key }}</a>
+                                        project }}/1">{{
+                                        project }}</a>
             </li>
             {% set count = count + 1 %} {% endfor %}
         </div>
