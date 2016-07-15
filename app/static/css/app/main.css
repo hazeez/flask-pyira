@@ -1,0 +1,252 @@
+body.base{
+    font-size:11px;
+/*    font-family: 'Roboto', sans-serif;
+*/}
+#login{
+    max-width: 350px;
+    margin-left:40%;
+    margin-top: 15%;
+}
+#btn-login{
+    margin-top: 15px;
+    display: block;
+    height: 3em;
+   -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px; 
+    background: #FE4365;
+    color: #FFFFFF;
+    border: 3px solid #FE4365;
+}
+#logo{
+    font-family: 'Suez One', serif;
+}
+a#logo.navbar-brand{
+    color: whitesmoke;
+    padding-left: 20px;
+}
+input#username.form-control, input#password.form-control{
+    height: 3em;
+    padding-top: 10px, 0,10px, 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
+}
+.flash-messages{
+    max-width: 400px;
+    margin-left: 30%;
+}
+nav.navbar.navbar-default{
+    margin-bottom: 0px;
+    background: #0B486B;
+    border-radius: 0px;
+}
+ol, ul, li {
+    list-style: none;
+}
+#project-container, #issue-container{
+    background: #FCF8E3;
+    padding-right: 0px;
+    margin-left: -15px;
+}
+#issue-container{
+    margin-left: 0px;
+    background: #F4F4F4;
+    padding-left: 0px;
+}
+#project-title, #issue-title{
+    width: 200px;
+}
+div#project-title, div#issue-title{
+    margin-bottom: 0px;
+}
+#project-group, #issue-group, #issue-listing{
+    position: relative;
+    overflow-y: auto;
+    height: 825px;
+    overflow-x: hidden;
+    border-right: 1px solid #E5E5E5;
+    padding-right: 0px;
+}
+#issue-listing{
+    height: 400px;
+    margin-top: 10px;
+    border-left: 1px solid #E5E5E5;
+}
+#issue-detail{
+    margin-top:-5px;
+}
+#project-list {
+    float:left;
+    position: relative;
+    width: 100%;
+}
+.list-group{
+    width: 100%;
+}
+a.project.list-group-item, a.issue.list-group-item, a.issue-detail.list-group-item{
+    border-top: 0px;
+    border-bottom: 0px;
+    border-radius: 0px;
+    border-right: none; 
+    border-left: none;
+    background: #FCF8E3;
+    padding-left: 20px;
+}
+a.issue.list-group-item{
+    background: #F4F4F4;
+}
+a.issue-detail.list-group-item{
+    background: #F8F8FF;
+}
+a.project.list-group-item:first-child, a.issue.list-group-item:first-child, a.issue-detail.list-group-item:first-child{
+    border-top: 1px solid #DDDDDD;
+}
+/*a.project.list-group-item:last-child, .list-group-item:last-child, a.issue.list-group-item:last-child{
+    border-bottom: 1px solid #DDDDDD;
+}
+*/a.project.list-group-item.active, a.issue.list-group-item.active, a.issue-detail.list-group-item.active{
+    background: #0B486B;
+    color: #FFF;
+    font-weight: bold;
+    border: 0px;
+    border: 1px solid #DDDDDD;
+}
+a.project{
+    position:relative;
+    z-index: 99999;
+}
+a.issue, a.project{
+    font-style: underline;
+    padding-left: 15px;
+}
+a.project:hover, a.issue:hover, a.issue-detail:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+div#dashboard-summary{
+    margin-top: 10px;
+}
+#issue-title, #project-title{
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 10px 10px 20px;
+    border: none;
+    border-bottom: 2px solid; 
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    font-size: 14px;
+}
+#dashboard-body{
+    margin-right: 0px;
+    padding-right: 0px;
+}
+#project-dashboard-link{
+   -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    padding: 7px 10px 7px 10px;
+    float: right;
+    background: #FE4365;
+    border-radius: 4px;
+    color: #FFFFFF;
+/*    border: 3px solid #FE4365;
+*/    margin-top: 10px;
+    margin-right: -6px;
+}
+td, .table-heading{
+    text-align: center;
+}
+td.description{
+    text-align: left;
+}
+td.selected{
+    background: #0B486B;
+}
+td.selected a{
+    color: #FFF;
+}
+#issue-title, #project-title{
+/*    font-family: 'Suez One', sans-serif;
+*/    font-size: 13px;
+    font-weight: bold;
+}
+#project-dashboard-link, #btn-login{
+    font-weight: normal;
+    font-size: 12px;
+}
+#btn-login{
+    font-size: 14px;
+}
+th#total-issues-table-row{
+    border-top: none;
+}
+td.table-top{
+    border:0px !important;
+}
+.table>tbody>tr>th.blank-table-header{
+    border-top: None;
+}
+#total-issues-summary-table{
+    border: None;
+    font-size:11px;
+    margin-bottom: 0px;
+    margin-top: -8px;
+}
+#table-itr1{
+    background: #E3E5E5;
+}
+#table-itr2{
+    background: #E5E3E3;
+}
+#table-total{
+    background: #DAE3E5;
+}
+.highlight-row{
+/*    background: #FFFFE0;
+*/
+border-top: 2px;
+}
+
+.highlight-row-sub{
+/*    background: #FCF8E3;
+*/}
+.zero{
+    color: #999;
+}
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../../images/facebook.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+li.navbar-link{
+    background: #FCF8E3;
+/*    font-family: 'Suez One', sans-serif;
+*/    font-size:12px;
+}

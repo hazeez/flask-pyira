@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" id="logo" href="#">
+          JIRA Client.
+      </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-link"><a href="#">{{ session['username'] }}</a></li>
+            <li class="navbar-link"><a href="{{ url_for('logout') }}"> Logout </a></li>
+        </ul>
+    </div>
+</nav>
+{% endblock navbar %} {% block content %}
+<div class="container col-md-2" id="project-container">
+    {% set count = 1 %}
+    <div id="project-title">Projects </div>
+    <div id="project-group">
+        <div id="project-list" class="list-group">
+            {% for project in project_data %}
+            <li>
+                <a class="project list-group-item" data-project-key="{{ project.key }}" href="/index/{{
+                                        project }}/1">{{
+                                        project }}</a>
+            </li>
+            {% set count = count + 1 %} {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container col-md-2" id="issue-container">
+    <div id="issue-title">Issues</div>
+    <div id="issue-group">
+        <div id="issue-list" class="list-group"></div>
+    </div>
+</div>
+<div class="container col-md-8">
+    <a href="#" id="project-dashboard-link">Generate Dashboard</a>
+</div>
+<div class="container col-md-8" id="dashboard-body">
+    <div id="dashboard-summary">
+    </div>
+</div>
+<div class="container col-md-8" id="issue-detail">
+    <ul class="nav nav-tabs">
+    </ul>
+    <div id="issue-listing" class="list-group tab-content col-md-3">
+    </div>
+</div>
+{% endblock content %}
