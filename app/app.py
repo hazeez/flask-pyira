@@ -1,11 +1,11 @@
 from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
 from forms import LoginForm
-from config import SERVER_URL
+from config import SERVER_URL, basedir
 
 app = Flask(__name__)
 app.config.from_object('config')
-
+print basedir
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
