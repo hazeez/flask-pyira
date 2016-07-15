@@ -2,10 +2,11 @@ from flask import Flask, render_template, redirect, session, flash, jsonify
 import requests
 from forms import LoginForm
 from config import SERVER_URL, basedir
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object('config')
-print basedir
+db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
