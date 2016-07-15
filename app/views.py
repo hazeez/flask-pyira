@@ -1,12 +1,13 @@
-from flask import Flask, render_template, redirect, session, flash, jsonify
+from flask import render_template, redirect, session, flash, jsonify
 import requests
 from forms import LoginForm
-from config import SERVER_URL, basedir
-from flask_sqlalchemy import SQLAlchemy
+from server_config import SERVER_URL
+from app import app
+# from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config.from_object('config')
-db = SQLAlchemy(app)
+# app = Flask(__name__)
+# app.config.from_object('config')
+# db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
@@ -312,5 +313,5 @@ def logout():
     return redirect('/login')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
