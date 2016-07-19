@@ -1,6 +1,6 @@
 .ropeproject
 *.swp
 *.pyc
-config.py
 *.ipynb
 .ipynb_checkpoints
+.idea
